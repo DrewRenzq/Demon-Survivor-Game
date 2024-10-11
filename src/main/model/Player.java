@@ -100,4 +100,16 @@ public class Player {
     public int getAttack() {
         return this.attack;
     }
+
+    public int getHealth() {
+        return this.health;
+    }
+
+    public void setHealth(int h) {
+        this.health = h;
+    }
+
+    public int getMaxHealth() {
+        return this.maxHealth;
+    }
 }

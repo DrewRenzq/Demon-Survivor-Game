@@ -10,12 +10,17 @@ import org.junit.jupiter.api.Test;
 public class PlayerTest {
     private Player slayer;
     private Item potion;
+    private Item heal;
     private Item helmet;
+    private Item sword;
     
     @BeforeEach
     void runBefore() {
         slayer = new Player();
         potion = new Item();
+        heal = new Item("heal",0,0);
+        helmet = new Item("helmet",1,5);
+        sword = new Item("sword",2,6);
 
     }
 
@@ -48,7 +53,30 @@ public class PlayerTest {
         assertEquals(1, slayer.getInventorySize());
         slayer.collect(helmet);
         assertEquals(2,slayer.getInventorySize());
-        slayer.collect(potion);
+        slayer.collect(sword);
         assertEquals(3,slayer.getInventorySize());
+    }
+
+    @Test
+    void testUseItem() {
+        assertEquals(10, slayer.getHealth());
+        assertEquals(10, slayer.getMaxHealth());
+        assertEquals(10, slayer.getAttack());
+
+        int type = potion.getType();
+        int value = potion.getValue();
+        
+
+        if (type == 0) {
+            slayer.setHealth(5);
+            slayer.useItem(heal);
+            assertEquals(10, slayer.getHealth());
+        } else if (type == 1) {
+            slayer.useItem(helmet);
+            assertEquals(15, slayer.getMaxHealth());
+        } else if (type == 2) {
+            slayer.useItem(sword);
+            assertEquals(16,slayer.getAttack());
+        }
     }
 }
