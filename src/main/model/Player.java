@@ -30,26 +30,8 @@ public class Player {
 
     //MODIFIES: this
     //EFFECTS: change player's position, moving up
-    public void moveUp() {
-        //stud
-    }
+    public void move(int direction) {
 
-    //MODIFIES: this
-    //EFFECTS: change player's position, moving down
-    public void moveDown() {
-        //stud
-    }
-
-    //MODIFIES: this
-    //EFFECTS: change player's position, moving left
-    public void moveLeft() {
-        //stud
-    }
-
-    //MODIFIES: this
-    //EFFECTS: change player's position, moving right
-    public void moveRight() {
-        //stud
     }
 
     //MODIFIES: this
@@ -58,7 +40,6 @@ public class Player {
         //stud
     }
 
-    //EFFECTS: 
 
 
     //Setter and Getter
