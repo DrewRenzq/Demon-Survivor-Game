@@ -63,20 +63,16 @@ public class PlayerTest {
         assertEquals(10, slayer.getMaxHealth());
         assertEquals(10, slayer.getAttack());
 
-        int type = potion.getType();
-        int value = potion.getValue();
-        
 
-        if (type == 0) {
-            slayer.setHealth(5);
-            slayer.useItem(heal);
-            assertEquals(10, slayer.getHealth());
-        } else if (type == 1) {
-            slayer.useItem(helmet);
-            assertEquals(15, slayer.getMaxHealth());
-        } else if (type == 2) {
-            slayer.useItem(sword);
-            assertEquals(16,slayer.getAttack());
-        }
+        slayer.setHealth(5);
+        slayer.useItem(heal);
+        assertEquals(10, slayer.getHealth());
+
+        slayer.useItem(helmet);
+        assertEquals(15, slayer.getMaxHealth());
+
+        slayer.useItem(sword);
+        assertEquals(16,slayer.getAttack());
+        
     }
 }
