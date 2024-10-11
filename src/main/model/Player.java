@@ -28,8 +28,17 @@ public class Player {
         //stud
     }
 
+    //EFFECTS: construct a player at 0,0, full health, empty inventory
+    public Player () {
+
+    }
+
     //MODIFIES: this
-    //EFFECTS: change player's position, moving up
+    //EFFECTS: change player's position,
+    //up == 1
+    //right == 2
+    //down == 3
+    //left == 4
     public void move(int direction) {
 
     }
@@ -43,5 +52,16 @@ public class Player {
 
 
     //Setter and Getter
+
+    public int getPositionX() {
+        return this.positionX;
+    }
     
+    public int getPositionY() {
+        return this.positionY;
+    }
+
+    public int getInventorySize() {
+        return this.inventory.size();
+    }
 }
