@@ -13,8 +13,8 @@ import java.util.List;
 public class Player {
     private static final int BASE_STATES = 10;
 
-    private int positionX;
-    private int positionY;
+    private int x;
+    private int y;
     private int health;
     private int maxHealth;
     private int attack;
@@ -24,8 +24,8 @@ public class Player {
     //EFFECTS: constructs a player with full health, basic states, 
     //on position (x,y) and an empty inventory
     public Player (int x, int y) {
-        positionX = x;
-        positionY = y;
+        this.x = x;
+        this.y = y;
         maxHealth = BASE_STATES;
         health = maxHealth;
         attack = BASE_STATES;
@@ -34,8 +34,8 @@ public class Player {
 
     //EFFECTS: construct a player at 0,0, full health, empty inventory
     public Player () {
-        positionX = 0;
-        positionY = 0;
+        x = 0;
+        y = 0;
         maxHealth = BASE_STATES;
         health = maxHealth;
         attack = BASE_STATES;
@@ -50,13 +50,13 @@ public class Player {
     //left == 4
     public void move(int direction) {
         if (direction == 1) {
-            this.positionY -= 1;
+            this.y -= 1;
         } else if (direction == 2) {
-            this.positionX += 1;
+            this.x += 1;
         } else if (direction == 3) {
-            this.positionY +=1;
+            this.y +=1;
         } else if (direction == 4) {
-            this.positionX -= 1;
+            this.x -= 1;
         }
     }
 
@@ -70,15 +70,19 @@ public class Player {
 
     //Setter and Getter
 
-    public int getPositionX() {
-        return this.positionX;
+    public int getX() {
+        return this.x;
     }
     
-    public int getPositionY() {
-        return this.positionY;
+    public int getY() {
+        return this.y;
     }
 
     public int getInventorySize() {
         return this.inventory.size();
+    }
+
+    public int getAttack() {
+        return this.attack;
     }
 }

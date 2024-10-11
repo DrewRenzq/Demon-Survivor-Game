@@ -21,24 +21,24 @@ public class PlayerTest {
 
     @Test
     void testMove() {
-        assertEquals(0,slayer.getPositionX());
-        assertEquals(0,slayer.getPositionY());
+        assertEquals(0,slayer.getX());
+        assertEquals(0,slayer.getY());
         //move right
         slayer.move(2);
-        assertEquals(1,slayer.getPositionX());
-        assertEquals(0,slayer.getPositionY());
+        assertEquals(1,slayer.getX());
+        assertEquals(0,slayer.getY());
         //move down
         slayer.move(3);
-        assertEquals(1,slayer.getPositionX());
-        assertEquals(1,slayer.getPositionY());
+        assertEquals(1,slayer.getX());
+        assertEquals(1,slayer.getY());
         //move up
         slayer.move(1);
-        assertEquals(1,slayer.getPositionX());
-        assertEquals(0,slayer.getPositionY());
+        assertEquals(1,slayer.getX());
+        assertEquals(0,slayer.getY());
         //move left
         slayer.move(4);
-        assertEquals(0,slayer.getPositionX());
-        assertEquals(0,slayer.getPositionY());
+        assertEquals(0,slayer.getX());
+        assertEquals(0,slayer.getY());
     }
 
     @Test
