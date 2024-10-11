@@ -10,5 +10,5 @@ This is a popular game genre with many examples of successful game design. Adapt
 ## User Stories
 - As a player, I want to be able to collect game items to increase my stats (health, attack, defense...).
 - As a player, I want to be able to view the game items I collected in my inventory.
-- As a player, I want to be able to walk or run on the screen.
+- As a player, I want to be able to move on the screen.
 - As a player, I want to be able to use weapon to kill enemies.
