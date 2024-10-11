@@ -53,9 +53,10 @@ public class Enemy {
         }
     }
 
-    //EFFECTS: enemy drop the item it carries at position it dies
+    //EFFECTS: enemy drop the item (removed) it carries at position it dies
     public void dropItem() {
         item.droppedAt(this.x, this.y);
+        this.item = null;
     }
 
     //Setter Getter
@@ -81,8 +82,8 @@ public class Enemy {
     }
 
     //For testing
-    public void setItem() {
-        this.item = new Item();
+    public void setItem(Item a) {
+        this.item = a;
     }
 
     public void setHealth(int x) {

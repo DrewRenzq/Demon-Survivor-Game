@@ -65,6 +65,7 @@ public class EnemyTest {
         assertEquals(0, potion.getY());
         
         demon.moveToPlayer(slayer);
+        demon.setItem(potion);
         demon.dropItem();
         assertEquals(1, potion.getX());
         assertEquals(1, potion.getY());

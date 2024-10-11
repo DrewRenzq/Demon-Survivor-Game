@@ -19,18 +19,24 @@ public class GameWorld {
 
     }
 
+    //MODIFIES: this
+    //EFFECTS: move enemies towards player
+    public void moveEnemiesToPlayer() {
+
+    }
+
     //EFFECTS: check if the game is over
     public void checkGameOver() {
 
     }
 
-    //EFFECTS:move enemies
-    public void moveEnemies() {
+    //EFFECTS: check if enemies and player on same position
+    public void checkEnemiesPlayerPosition() {
 
     }
 
     //MODIFIES: this
-    //EFFECTS: remove enemies that has no health
+    //EFFECTS: remove enemies that has health <= 0
     public void checkEnemies() {
 
     }
@@ -41,5 +47,5 @@ public class GameWorld {
 
     }
 
-    
+
 }
