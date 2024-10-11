@@ -66,7 +66,22 @@ public class Player {
         this.inventory.add(item);
     }
 
+    //MODIFIES: this
+    //EFFECTS: use an item in inventory to change states
+    public void useItem(Item item) {
+        int type = item.getType();
+        int value = item.getValue();
+        if (type == 0) {
+            this.health = maxHealth;
+        } else if (type == 1) {
+            this.maxHealth += value;
+        } else if (type == 2) {
+            this.attack += value;
+        }
+    }
 
+    //MODIFIES: this
+    //EFFECTS: use an item to increase states
 
     //Setter and Getter
 
