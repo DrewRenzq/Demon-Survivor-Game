@@ -18,19 +18,28 @@ public class Player {
     private int health;
     private int maxHealth;
     private int attack;
-    private int defense;
     private List<Item> inventory;
 
     //REQUIRES: x && y >= 0
     //EFFECTS: constructs a player with full health, basic states, 
     //on position (x,y) and an empty inventory
     public Player (int x, int y) {
-        //stud
+        positionX = x;
+        positionY = y;
+        maxHealth = BASE_STATES;
+        health = maxHealth;
+        attack = BASE_STATES;
+        inventory = new ArrayList<>();
     }
 
     //EFFECTS: construct a player at 0,0, full health, empty inventory
     public Player () {
-
+        positionX = 0;
+        positionY = 0;
+        maxHealth = BASE_STATES;
+        health = maxHealth;
+        attack = BASE_STATES;
+        inventory = new ArrayList<>();
     }
 
     //MODIFIES: this
@@ -40,13 +49,21 @@ public class Player {
     //down == 3
     //left == 4
     public void move(int direction) {
-
+        if (direction == 1) {
+            this.positionY -= 1;
+        } else if (direction == 2) {
+            this.positionX += 1;
+        } else if (direction == 3) {
+            this.positionY +=1;
+        } else if (direction == 4) {
+            this.positionX -= 1;
+        }
     }
 
     //MODIFIES: this
     //EFFECTS: add an item to player's inventory
     public void collect(Item item) {
-        //stud
+        this.inventory.add(item);
     }
 
 
