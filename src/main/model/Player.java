@@ -29,7 +29,7 @@ public class Player {
         maxHealth = BASE_STATES;
         health = maxHealth;
         attack = BASE_STATES;
-        inventory = new ArrayList<>();
+        inventory = new ArrayList<Item>();
     }
 
     //EFFECTS: construct a player at 0,0, full health, empty inventory
@@ -95,6 +95,10 @@ public class Player {
 
     public int getInventorySize() {
         return this.inventory.size();
+    }
+
+    public List<Item> getInventory() {
+        return this.inventory;
     }
 
     public int getAttack() {
