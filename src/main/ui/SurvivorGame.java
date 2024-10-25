@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Random;
+import java.util.Iterator;
 
 /*
  * Represent a demon survivor game with a player, list of enemies,
@@ -18,13 +19,13 @@ public class SurvivorGame {
     private List<Item> items;
     private Scanner input;
 
-    //EFFECTS: run the game
+    // EFFECTS: run the game
     public SurvivorGame() {
         runGame();
     }
 
-    //MODIFIES: this
-    //EFFECTS: processes user input
+    // MODIFIES: this
+    // EFFECTS: processes user input
     public void runGame() {
         boolean gameGoing = true;
         String command = null;
@@ -47,12 +48,12 @@ public class SurvivorGame {
         System.out.println("\nGame Over");
     }
 
-    //MODIFIES: this
-    //EFFECTS: processes user command
+    // MODIFIES: this
+    // EFFECTS: processes user command
     public void processCommand(String command) {
-        if(command.equals("move")) {
+        if (command.equals("move")) {
             playerMove();
-        } else if (command.equals("attack")){
+        } else if (command.equals("attack")) {
             playerAttack();
         } else if (command.equals("collect")) {
             playerCollect();
@@ -63,47 +64,84 @@ public class SurvivorGame {
         }
     }
 
-    //MODIFIES: this
-    //EFFECTS: player use first item in inventory
+    // MODIFIES: this
+    // EFFECTS: player use first item in inventory
     public void playerUseFirstItem() {
-        if (player.getInventorySize()>0) {
-            player.useItem(player.getInventory().get(0));
+        if (player.getInventorySize() > 0) {
+            player.useItem(0);
         } else {
             System.out.println("You have nothing!");
         }
 
     }
 
-    //MODIFIES: this
-    //EFFECTS: player collect item on location 
+    // //MODIFIES: this
+    // //EFFECTS: player collect item on location
+    // public void playerCollect() {
+    // for (Item i: items) {
+    // if ((i.getPosX() == player.getPosX()) && (i.getPosY() == player.getPosY())) {
+    // player.collect(i);
+    // }
+    // }
+    // System.out.println("Done collect.");
+    // }
+
+    // MODIFIES: this
+    // EFFECTS: player collect an item to inventory, remove collected item in items
     public void playerCollect() {
-        for (Item i: items) {
-            if ((i.getX()==player.getX()) && (i.getY()==player.getY())) {
-                player.collect(i);
+        Iterator<Item> iterator = items.iterator();
+        while (iterator.hasNext()) {
+            Item item = iterator.next();
+            if ((item.getPosX() == player.getPosX()) && (item.getPosY() == player.getPosY())) {
+                player.collect(item);
+                iterator.remove();
+                System.out.println("Collected: " + item.getName());
             }
         }
-        System.out.println("Done collect.");
     }
 
-    //MODIFIES: this
-    //EFFECTS: player attack
+    // // MODIFIES: this
+    // // EFFECTS: player attack
+    // public void playerAttack() {
+    // for (Enemy e : enemies) {
+    // if ((e.getPosX() == player.getPosX()) && (e.getPosY() == player.getPosY())) {
+    // e.takeDamage(player.getAttack());
+    // System.out.println(player.getAttack() + " damage dealt!");
+    // if (e.getHealth() <= 0) {
+    // e.dropItem();
+    // items.add(e.getItem());// drop item on enemy's death
+    // }
+    // }
+    // }
+
+    // System.out.println("Done attack.");
+    // }
+
+    // MODIFIES: this
+    // EFFECTS: player attack, if killed enemy, remove enemycoc
     public void playerAttack() {
-        for (Enemy e: enemies) {
-            if ((e.getX()==player.getX()) && (e.getY()==player.getY())) {
-                e.takeDamage(player.getAttack());
-                System.out.println(player.getAttack()+" damage dealt!");
-            } 
+        Iterator<Enemy> iterator = enemies.iterator();
+        while (iterator.hasNext()) {
+            Enemy enemy = iterator.next();
+            if ((enemy.getPosX() == player.getPosX()) && (enemy.getPosY() == player.getPosY())) {
+                enemy.takeDamage(player.getAttack());
+                System.out.println(player.getAttack() + " damage dealt!");
+                if (enemy.getHealth() <= 0) {
+                    enemy.dropItem();
+                    items.add(enemy.getItem());// drop item on enemy's death
+                    iterator.remove();
+                    System.out.println("Enemy Killed");
+                }
+            }
         }
-
-        System.out.println("Done attack.");
     }
 
-    //MODIFIES: this
-    //EFFECTS: player moves
+    // MODIFIES: this
+    // EFFECTS: player moves
     public void playerMove() {
-       System.out.println("Which way? up | down | left | right"); 
-       String direction = input.next();
-        if(direction.equals("up")) {
+        System.out.println("Which way? up | down | left | right");
+        String direction = input.next();
+        if (direction.equals("up")) {
             this.player.move(1);
         } else if (direction.equals("right")) {
             this.player.move(2);
@@ -113,26 +151,26 @@ public class SurvivorGame {
             this.player.move(4);
         }
 
-        System.out.println("Moved to (" +player.getX()+","+player.getY()+")");
+        System.out.println("Moved to (" + player.getPosX() + "," + player.getPosY() + ")");
     }
 
-    //EFFECTS: display all the information about the game, and command menu
+    // EFFECTS: display all the information about the game, and command menu
     public void displayGame() {
-        //Display Player Information
+        // Display Player Information
         displayPlayer();
 
-        //Display Enemy Information
+        // Display Enemy Information
         displayEnemies();
 
-        //Display Item Information
+        // Display Item Information
         displayItems();
 
-        //Display menu
+        // Display menu
         displayMenu();
 
     }
 
-    //EFFECTS: display Menu for actions
+    // EFFECTS: display Menu for actions
     public void displayMenu() {
         System.out.println("\n=== Action ===");
         System.out.println("\t> move");
@@ -141,51 +179,52 @@ public class SurvivorGame {
         System.out.println("\t> use");
     }
 
-    //EFFECTS: display items' information, name and location
+    // EFFECTS: display items' information, name and location
     public void displayItems() {
         System.out.println("\n=== Items ===");
         if (items.isEmpty()) {
             System.out.println("No items.");
         } else {
             for (Item i : items) {
-                System.out.println("Item: "+ i.getName() + " at (" + i.getX()+","+i.getY()+")");
+                System.out.println("Item: " + i.getName() + " at (" + i.getPosX() + "," + i.getPosY() + ")");
             }
         }
     }
 
-    //EFFCTS: display enemis' information, location and health
+    // EFFCTS: display enemis' information, location and health
     public void displayEnemies() {
         System.out.println("\n=== Enemy Information ===");
         if (enemies.isEmpty()) {
             System.out.println("No enemies, chill.");
         } else {
-            for (Enemy e: enemies) {
-                System.out.println("Enemy at (" + e.getX()+","+e.getY()+ ") Health: ("+e.getHealth()+")");
+            for (Enemy e : enemies) {
+                System.out.println("Enemy at (" + e.getPosX() + "," + e.getPosY()
+                        + ") Health: (" + e.getHealth() + ")");
             }
         }
     }
 
-    //EFFECTS: display player information, postion, health, attack ,inventory list
+    // EFFECTS: display player information, postion, health, attack ,inventory list
     public void displayPlayer() {
         System.out.println("\n=== Player Information ===");
-        System.out.println("Position: (" +  player.getX() + ", " + player.getY() + ")");
-        System.out.println("Health: " + player.getHealth() +" / "+ player.getMaxHealth());
-        System.out.println("Attack: " +player.getAttack());
-        System.out.print("Inventory:  " );
+        System.out.println("Position: (" + player.getPosX() + ", " + player.getPosY() + ")");
+        System.out.println("Health: " + player.getHealth() + " / " + player.getMaxHealth());
+        System.out.println("Attack: " + player.getAttack());
+        System.out.print("Inventory:  ");
         displayInventory();
     }
 
-    //EFFECTS: display the players inventory
+    // EFFECTS: display the players inventory
     public void displayInventory() {
         List<Item> inventory = player.getInventory();
         System.out.println();
         for (Item i : inventory) {
-            System.out.print(i.getName());
+            System.out.print(i.getName() + " ");
         }
     }
 
-    //MODIFIES: this
-    //EFFECTS: initializes the game
+    // MODIFIES: this
+    // EFFECTS: initializes the game
     public void init() {
         player = new Player(0, 0);
         enemies = new ArrayList<Enemy>();
@@ -198,40 +237,38 @@ public class SurvivorGame {
         this.items.add(item);
     }
 
-    //MODIFIES: this
-    //EFFECTS:
+    // MODIFIES: this
+    // EFFECTS:
     public void update() {
 
     }
-    
 
-    //MODIFIES: this
-    //EFFECTS: move enemies towards player
+    // MODIFIES: this
+    // EFFECTS: move enemies towards player
     public void moveEnemiesToPlayer() {
 
     }
 
-    //EFFECTS: check if the game is over
+    // EFFECTS: check if the game is over
     public void checkGameOver() {
 
     }
 
-    //EFFECTS: check if enemies and player on same position
+    // EFFECTS: check if enemies and player on same position
     public void checkEnemiesPlayerPosition() {
 
     }
 
-    //MODIFIES: this
-    //EFFECTS: remove enemies that has health <= 0
+    // MODIFIES: this
+    // EFFECTS: remove enemies that has health <= 0
     public void checkEnemies() {
 
     }
 
-    //MODIFIES: this
-    //EFFECTS: remove items picked up by player
+    // MODIFIES: this
+    // EFFECTS: remove items picked up by player
     public void checkItems() {
 
     }
-
 
 }
