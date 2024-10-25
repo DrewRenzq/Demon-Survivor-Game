@@ -1,12 +1,14 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Writable;
 
 /*
  * Represent an enemy in game, with
  * a position(x and y), health and carried item
  */
 
-public class Enemy {
+public class Enemy implements Writable {
     private static final int BASE_STATES = 1;
     private int posX;
     private int posY;
@@ -87,5 +89,17 @@ public class Enemy {
 
     public void setHealth(int x) {
         this.health = x;
+    }
+
+    //EFFECTS: produce a JSONObject to represent a Enemy object
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("posX", posX);
+        json.put("posY", posY);
+        json.put("health", health);
+        json.put("attack", attack);
+        json.put("item", item.toJson());
+        return json;
     }
 }
