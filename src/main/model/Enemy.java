@@ -53,10 +53,9 @@ public class Enemy {
         }
     }
 
-    //EFFECTS: enemy drop the item (removed) it carries at position it dies
+    //EFFECTS: enemy drop the item (removed) it carries, at position it dies
     public void dropItem() {
         item.droppedAt(this.posX, this.posY);
-        this.item = null;
     }
 
     //Setter Getter

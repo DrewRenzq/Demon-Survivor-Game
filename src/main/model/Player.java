@@ -67,7 +67,7 @@ public class Player {
     }
 
     //MODIFIES: this
-    //EFFECTS: use an item in inventory to change states
+    //EFFECTS: use an item to change states
     public void useItem(Item item) {
         int type = item.getType();
         int value = item.getValue();
@@ -78,6 +78,22 @@ public class Player {
         } else if (type == 2) {
             this.attack += value;
         }
+    }
+
+    //MODIFIES: this
+    //EFFECTS: use an item in inventory to change states, after use item gone
+    public void useItem(int index) {
+        Item item = this.inventory.get(index);
+        int type = item.getType();
+        int value = item.getValue();
+        if (type == 0) {
+            this.health = maxHealth;
+        } else if (type == 1) {
+            this.maxHealth += value;
+        } else if (type == 2) {
+            this.attack += value;
+        }
+        this.inventory.remove(index);
     }
 
     //MODIFIES: this
