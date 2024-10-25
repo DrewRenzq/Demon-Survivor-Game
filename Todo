@@ -1,0 +1,9 @@
+- code coverage
+- checkstyle
+- documentation
+- update function in survivor game:
+    - clear dead enemy 
+    - enemy deal damage to player if on this position and after player attacked
+    - clear collected item
+    - add enemy droped item to the map
+    - create enemy away from player when all enemies r dead
