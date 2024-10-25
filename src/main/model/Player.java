@@ -13,8 +13,8 @@ import java.util.List;
 public class Player {
     private static final int BASE_STATES = 10;
 
-    private int x;
-    private int y;
+    private int posX;
+    private int posY;
     private int health;
     private int maxHealth;
     private int attack;
@@ -23,9 +23,9 @@ public class Player {
     //REQUIRES: x && y >= 0
     //EFFECTS: constructs a player with full health, basic states, 
     //on position (x,y) and an empty inventory
-    public Player (int x, int y) {
-        this.x = x;
-        this.y = y;
+    public Player(int x, int y) {
+        this.posX = x;
+        this.posY = y;
         maxHealth = BASE_STATES;
         health = maxHealth;
         attack = BASE_STATES;
@@ -33,9 +33,9 @@ public class Player {
     }
 
     //EFFECTS: construct a player at 0,0, full health, empty inventory
-    public Player () {
-        x = 0;
-        y = 0;
+    public Player() {
+        posX = 0;
+        posY = 0;
         maxHealth = BASE_STATES;
         health = maxHealth;
         attack = BASE_STATES;
@@ -50,13 +50,13 @@ public class Player {
     //left == 4
     public void move(int direction) {
         if (direction == 1) {
-            this.y -= 1;
+            this.posY -= 1;
         } else if (direction == 2) {
-            this.x += 1;
+            this.posX += 1;
         } else if (direction == 3) {
-            this.y +=1;
+            this.posY += 1;
         } else if (direction == 4) {
-            this.x -= 1;
+            this.posX -= 1;
         }
     }
 
@@ -85,12 +85,12 @@ public class Player {
 
     //Setter and Getter
 
-    public int getX() {
-        return this.x;
+    public int getPosX() {
+        return this.posX;
     }
     
-    public int getY() {
-        return this.y;
+    public int getPosY() {
+        return this.posY;
     }
 
     public int getInventorySize() {

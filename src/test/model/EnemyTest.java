@@ -16,29 +16,29 @@ public class EnemyTest {
     void runBefore() {
         demon = new Enemy(0, 0);
         golbin = new Enemy(3,3);
-        slayer = new Player (2,2);
+        slayer = new Player(2,2);
     }
 
     @Test
     void testMoveToPlayer() {
         //demon
         demon.moveToPlayer(slayer);
-        assertEquals(1, demon.getX());
-        assertEquals(1, demon.getY());
+        assertEquals(1, demon.getPosX());
+        assertEquals(1, demon.getPosY());
         demon.moveToPlayer(slayer);
-        assertEquals(2, demon.getX());
-        assertEquals(2, demon.getY());
+        assertEquals(2, demon.getPosX());
+        assertEquals(2, demon.getPosY());
         demon.moveToPlayer(slayer);
-        assertEquals(2, demon.getX());
-        assertEquals(2, demon.getY());
+        assertEquals(2, demon.getPosX());
+        assertEquals(2, demon.getPosY());
 
         //golbin
         golbin.moveToPlayer(slayer);
-        assertEquals(2, golbin.getX());
-        assertEquals(2, golbin.getY());
+        assertEquals(2, golbin.getPosX());
+        assertEquals(2, golbin.getPosY());
         golbin.moveToPlayer(slayer);
-        assertEquals(2, golbin.getX());
-        assertEquals(2, golbin.getY());
+        assertEquals(2, golbin.getPosX());
+        assertEquals(2, golbin.getPosY());
     }
 
     @Test
@@ -61,17 +61,17 @@ public class EnemyTest {
         Item helmet = golbin.getItem();
 
         demon.dropItem();
-        assertEquals(0, potion.getX());
-        assertEquals(0, potion.getY());
+        assertEquals(0, potion.getPosX());
+        assertEquals(0, potion.getPosY());
         
         demon.moveToPlayer(slayer);
         demon.setItem(potion);
         demon.dropItem();
-        assertEquals(1, potion.getX());
-        assertEquals(1, potion.getY());
+        assertEquals(1, potion.getPosX());
+        assertEquals(1, potion.getPosY());
 
         golbin.dropItem();
-        assertEquals(3, helmet.getX());
-        assertEquals(3, helmet.getY());
+        assertEquals(3, helmet.getPosX());
+        assertEquals(3, helmet.getPosY());
     }
 }

@@ -7,8 +7,8 @@ import java.util.Random;
  */
 
 public class Item {
-    private int x;
-    private int y;
+    private int posX;
+    private int posY;
     private String name;
     private int type;
     private int value;
@@ -33,8 +33,8 @@ public class Item {
     //MODIFIES: this
     //EFFECTS: item gets a position where it is dropped
     public void droppedAt(int x, int y) {
-        this.x = x;
-        this.y = y;
+        this.posX = x;
+        this.posY = y;
     }
 
     //Getter Setter
@@ -46,12 +46,12 @@ public class Item {
         return this.value;
     }
 
-    public int getX() {
-        return this.x;
+    public int getPosX() {
+        return this.posX;
     }
 
-    public int getY() {
-        return this.y;
+    public int getPosY() {
+        return this.posY;
     }
     
     public String getName() {

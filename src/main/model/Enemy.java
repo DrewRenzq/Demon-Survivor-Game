@@ -8,8 +8,8 @@ package model;
 
 public class Enemy {
     private static final int BASE_STATES = 1;
-    private int x;
-    private int y;
+    private int posX;
+    private int posY;
     private int health;
     private int attack;
     private Item item;
@@ -18,8 +18,8 @@ public class Enemy {
     //Effects: constructs a enemy at position (x,y), hase health,
     //with random item carried
     public Enemy(int x, int y) {
-        this.x = x;
-        this.y = y;
+        this.posX = x;
+        this.posY = y;
         health = BASE_STATES;
         attack = BASE_STATES;
         item = new Item();
@@ -27,19 +27,19 @@ public class Enemy {
 
     //EFFECTS: enemy move towards player, change position
     public void moveToPlayer(Player player) {
-        int playerX = player.getX();
-        int playerY = player.getY();
+        int playerX = player.getPosX();
+        int playerY = player.getPosY();
 
-        if (this.x < playerX) {
-            this.x++;
-        } else if (x > playerX) {
-            this.x--;
+        if (this.posX < playerX) {
+            this.posX++;
+        } else if (posX > playerX) {
+            this.posX--;
         }
 
-        if (this.y < playerY) {
-            this.y++;
-        } else if (this.y > playerY) {
-            this.y--;
+        if (this.posY < playerY) {
+            this.posY++;
+        } else if (this.posY > playerY) {
+            this.posY--;
         }
     }
 
@@ -55,18 +55,18 @@ public class Enemy {
 
     //EFFECTS: enemy drop the item (removed) it carries at position it dies
     public void dropItem() {
-        item.droppedAt(this.x, this.y);
+        item.droppedAt(this.posX, this.posY);
         this.item = null;
     }
 
     //Setter Getter
 
-    public int getX() {
-        return this.x;
+    public int getPosX() {
+        return this.posX;
     }
     
-    public int getY() {
-        return this.y;
+    public int getPosY() {
+        return this.posY;
     }
 
     public int getHealth() {
