@@ -1,9 +1,13 @@
 package ui;
 
 import model.*;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
 import java.util.List;
 import java.util.Scanner;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 
 /*
@@ -11,11 +15,16 @@ import java.util.Scanner;
  */
 
 public class SurvivorGameApp {
+    private static final String JSON_STORE = "./data/SurvivorGame.json";
     private SurvivorGame survivorGame;
     private Scanner input;
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
 
     // EFFECTS: run the game
     public SurvivorGameApp() {
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
         runGame();
     }
 
@@ -44,6 +53,14 @@ public class SurvivorGameApp {
     }
 
     // MODIFIES: this
+    // EFFECTS: initializes the game
+    public void init() {
+        survivorGame = new SurvivorGame();
+        input = new Scanner(System.in);
+
+    }
+
+    // MODIFIES: this
     // EFFECTS: processes user command
     public void processCommand(String command) {
         if (command.equals("move")) {
@@ -54,6 +71,10 @@ public class SurvivorGameApp {
             survivorGame.playerCollect();
         } else if (command.equals("use")) {
             survivorGame.playerUseFirstItem();// first item used
+        } else if (command.equals("save")) {
+            saveWorkRoom();
+        } else if (command.equals("load")) {
+            loadWorkRoom();
         } else {
             System.out.println("You can't do that.");
         }
@@ -84,6 +105,8 @@ public class SurvivorGameApp {
         System.out.println("\t> attack");
         System.out.println("\t> collect");
         System.out.println("\t> use");
+        System.out.println("\t> save");
+        System.out.println("\t> load");
     }
 
     // EFFECTS: display items' information, name and location
@@ -133,13 +156,42 @@ public class SurvivorGameApp {
         }
     }
 
-    // MODIFIES: this
-    // EFFECTS: initializes the game
-    public void init() {
-        survivorGame = new SurvivorGame();
-        input = new Scanner(System.in);
+    // // EFFECTS: saves the survivor game to file
+    // private void saveWorkRoom() {
+    //     try {
+    //         jsonWriter.open();
+    //         jsonWriter.write(survivorGame);
+    //         jsonWriter.close();
+    //         System.out.println("Saved current game to " + JSON_STORE);
+    //     } catch (FileNotFoundException e) {
+    //         System.out.println("Unable to write to file: " + JSON_STORE);
+    //     }
+    // }
 
-    }
+    
+    // // MODIFIES: this
+    // // EFFECTS: loads workroom from file
+    // private void loadWorkRoom() {
+    //     try {
+    //         survivorGame = jsonReader.read();
+    //         System.out.println("Loaded game from " + JSON_STORE);
+    //     } catch (IOException e) {
+    //         System.out.println("Unable to read from file: " + JSON_STORE);
+    //     }
+    // }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     // MODIFIES: this
     // EFFECTS:
