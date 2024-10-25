@@ -1,12 +1,14 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Writable;
 import java.util.Random;
 
 /*
  * Represent a item with its position and effect(type:integer, value:integer)
  */
 
-public class Item {
+public class Item implements Writable {
     private int posX;
     private int posY;
     private String name;
@@ -62,5 +64,15 @@ public class Item {
         return possibleNames;
     }
 
-
+    //EFFECTS: produce a JSONObject to represent a Item object
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("posX", posX);
+        json.put("posY", posY);
+        json.put("name", name);
+        json.put("type", type);
+        json.put("value", value);
+        return json;
+    }    
 }
