@@ -6,16 +6,20 @@ import java.util.Scanner;
 import java.util.Random;
 import java.util.Iterator;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 /*
  * Represent a demon survivor game with a player, list of enemies,
  * list of items
  */
-public class SurvivorGame {
+public class SurvivorGame implements Writable {
     private Player player;
     private List<Enemy> enemies;
     private List<Item> items;
 
-    //AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+    //EFFECTS: construct a survivor game with a player at (0,0), a enemy at random pos within (0-5,0-5) and a item
     public SurvivorGame() {
         player = new Player(0, 0);
         enemies = new ArrayList<Enemy>();
@@ -25,6 +29,13 @@ public class SurvivorGame {
         Item item = new Item();
         this.enemies.add(enemy);
         this.items.add(item);
+    }
+
+    //EFFECTS: construct a survivor game with a given player, and empty list of enemies and items
+    public SurvivorGame(Player p) {
+        player = p;
+        enemies = new ArrayList<Enemy>();
+        items = new ArrayList<Item>();
     }
 
     // MODIFIES: this
@@ -38,16 +49,6 @@ public class SurvivorGame {
 
     }
 
-    // //MODIFIES: this
-    // //EFFECTS: player collect item on location
-    // public void playerCollect() {
-    // for (Item i: items) {
-    // if ((i.getPosX() == player.getPosX()) && (i.getPosY() == player.getPosY())) {
-    // player.collect(i);
-    // }
-    // }
-    // System.out.println("Done collect.");
-    // }
 
     // MODIFIES: this
     // EFFECTS: player collect an item to inventory, remove collected item in items
@@ -62,23 +63,6 @@ public class SurvivorGame {
             }
         }
     }
-
-    // // MODIFIES: this
-    // // EFFECTS: player attack
-    // public void playerAttack() {
-    // for (Enemy e : enemies) {
-    // if ((e.getPosX() == player.getPosX()) && (e.getPosY() == player.getPosY())) {
-    // e.takeDamage(player.getAttack());
-    // System.out.println(player.getAttack() + " damage dealt!");
-    // if (e.getHealth() <= 0) {
-    // e.dropItem();
-    // items.add(e.getItem());// drop item on enemy's death
-    // }
-    // }
-    // }
-
-    // System.out.println("Done attack.");
-    // }
 
     // MODIFIES: this
     // EFFECTS: player attack, if killed enemy, remove enemycoc
@@ -100,7 +84,7 @@ public class SurvivorGame {
     }
 
     // MODIFIES: this
-    // EFFECTS: player moves
+    // EFFECTS: player moves up or down or left or right by 1
     public void playerMove(Scanner input) {
         System.out.println("Which way? up | down | left | right");
         String direction = input.next();
@@ -129,4 +113,39 @@ public class SurvivorGame {
     public List<Item> getiItems() {
         return items;
     }
+
+    //EFFECTS: produce a JSONObject to represent a Survivor Game object
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("player", player.toJson());
+        json.put("enemies", enemiesToJson());
+        json.put("items", itemsToJson());
+
+        return json;
+    }
+
+    // EFFECTS: returns enemies as a JSON array
+    private JSONArray enemiesToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (Enemy e : enemies) {
+            jsonArray.put(e.toJson());
+        }
+
+        return jsonArray;
+    }
+
+    // EFFECTS: returns items as a JSON array
+    private JSONArray itemsToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (Item t : items) {
+            jsonArray.put(t.toJson());
+        }
+
+        return jsonArray;
+    }
+
+    
 }
