@@ -12,3 +12,5 @@ This is a popular game genre with many examples of successful game design. Adapt
 - As a player, I want to be able to view the game items I collected in my inventory.
 - As a player, I want to be able to move on the screen.
 - As a player, I want to be able to attck enemies.
+- As a player, at any time during the game, I want to be have the option to save my game progress.
+- As a player, when I start a game, I want to be given the option to load my saved game progress.
