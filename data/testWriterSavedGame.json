@@ -1,0 +1,36 @@
+{
+    "enemies": [{
+        "posX": 4,
+        "posY": 1,
+        "item": {
+            "posX": 0,
+            "posY": 0,
+            "name": "Armor",
+            "type": 2,
+            "value": 9
+        },
+        "attack": 1,
+        "health": 1
+    }],
+    "items": [{
+        "posX": 0,
+        "posY": 0,
+        "name": "Ring",
+        "type": 1,
+        "value": 7
+    }],
+    "player": {
+        "posX": 0,
+        "posY": 0,
+        "attack": 10,
+        "health": 10,
+        "maxHealth": 10,
+        "inventory": [{
+            "posX": 0,
+            "posY": 0,
+            "name": "Ring",
+            "type": 1,
+            "value": 7
+        }]
+    }
+}

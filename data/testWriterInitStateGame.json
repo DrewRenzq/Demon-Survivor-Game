@@ -1,0 +1,12 @@
+{
+    "enemies": [],
+    "items": [],
+    "player": {
+        "posX": 0,
+        "posY": 0,
+        "attack": 10,
+        "health": 10,
+        "maxHealth": 10,
+        "inventory": []
+    }
+}
