@@ -22,11 +22,6 @@ public class SurvivorGame implements Writable {
         player = new Player(0, 0);
         enemies = new ArrayList<Enemy>();
         items = new ArrayList<Item>();
-    //     Random random = new Random();
-    //     Enemy enemy = new Enemy(random.nextInt(5), random.nextInt(5));
-    //     Item item = new Item();
-    //     this.enemies.add(enemy);
-    //     this.items.add(item);
     }
 
     //EFFECTS: construct a survivor game with a given player, and empty list of enemies and items

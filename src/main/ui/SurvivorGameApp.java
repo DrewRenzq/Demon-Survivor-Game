@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Scanner;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Random;
 
 
 /*
@@ -56,6 +57,11 @@ public class SurvivorGameApp {
     // EFFECTS: initializes the game
     public void init() {
         survivorGame = new SurvivorGame();
+        Random random = new Random();
+        Enemy enemy = new Enemy(random.nextInt(5), random.nextInt(5));
+        Item item = new Item();
+        survivorGame.getEnemies().add(enemy);
+        survivorGame.getItems().add(item);
         input = new Scanner(System.in);
 
     }
