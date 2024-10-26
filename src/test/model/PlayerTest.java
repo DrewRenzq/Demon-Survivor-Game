@@ -21,7 +21,7 @@ public class PlayerTest {
         heal = new Item("heal",0,0);
         helmet = new Item("helmet",1,5);
         sword = new Item("sword",2,6);
-
+        
     }
 
     @Test
@@ -65,13 +65,16 @@ public class PlayerTest {
 
 
         slayer.setHealth(5);
-        slayer.useItem(heal);
+        slayer.collect(heal);
+        slayer.useItem(0);
         assertEquals(10, slayer.getHealth());
 
-        slayer.useItem(helmet);
+        slayer.collect(helmet);
+        slayer.useItem(0);
         assertEquals(15, slayer.getMaxHealth());
 
-        slayer.useItem(sword);
+        slayer.collect(sword);
+        slayer.useItem(0);
         assertEquals(16,slayer.getAttack());
         
     }
