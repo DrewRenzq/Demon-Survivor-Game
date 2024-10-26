@@ -24,11 +24,11 @@ public class SurvivorGame implements Writable {
         player = new Player(0, 0);
         enemies = new ArrayList<Enemy>();
         items = new ArrayList<Item>();
-        Random random = new Random();
-        Enemy enemy = new Enemy(random.nextInt(5), random.nextInt(5));
-        Item item = new Item();
-        this.enemies.add(enemy);
-        this.items.add(item);
+    //     Random random = new Random();
+    //     Enemy enemy = new Enemy(random.nextInt(5), random.nextInt(5));
+    //     Item item = new Item();
+    //     this.enemies.add(enemy);
+    //     this.items.add(item);
     }
 
     //EFFECTS: construct a survivor game with a given player, and empty list of enemies and items
@@ -83,22 +83,16 @@ public class SurvivorGame implements Writable {
         }
     }
 
-    // MODIFIES: this
-    // EFFECTS: player moves up or down or left or right by 1
-    public void playerMove(Scanner input) {
-        System.out.println("Which way? up | down | left | right");
-        String direction = input.next();
-        if (direction.equals("up")) {
-            this.player.move(1);
-        } else if (direction.equals("right")) {
-            this.player.move(2);
-        } else if (direction.equals("down")) {
-            this.player.move(3);
-        } else if (direction.equals("left")) {
-            this.player.move(4);
-        }
+    //MODIFIES: this
+    //EFFECTS: add a enemy to enemies
+    public void addEnemy(Enemy e) {
+        this.enemies.add(e);
+    }
 
-        System.out.println("Moved to (" + player.getPosX() + "," + player.getPosY() + ")");
+    //MODIFIES: this
+    //EFFECTS: add a item to enemies
+    public void addItem(Item i) {
+        this.items.add(i);
     }
 
     //Setter & Getter
@@ -110,8 +104,20 @@ public class SurvivorGame implements Writable {
         return enemies;
     }
 
-    public List<Item> getiItems() {
+    public List<Item> getItems() {
         return items;
+    }
+
+    public int getEnemiesSize() {
+        return enemies.size();
+    }
+
+    public int getItemsSize() {
+        return items.size();
+    }
+
+    public List<Item> getPlayerInventory() {
+        return player.getInventory();
     }
 
     //EFFECTS: produce a JSONObject to represent a Survivor Game object
