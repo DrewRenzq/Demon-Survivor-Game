@@ -20,13 +20,22 @@ public class Item implements Writable {
     public Item() {
         Random random = new Random();
         this.name = possibleNames [random.nextInt(possibleNames.length)];
-        this.type = random.nextInt(3); // 0 - heal, 1 - increase max health or 2 - attack
+        this.type = random.nextInt(3); // 0 - heal, 1 - increase max health, 2 - attack
         this.value = random.nextInt(11); // 0 - 10
 
     }
 
     //For testing, constructor with certain effect
     public Item(String name,int type, int value) {
+        this.name = name;
+        this.type = type;
+        this.value = value;
+    }
+
+    //For testing, constructor with certain effect
+    public Item(int x, int y, String name,int type, int value) {
+        this.posX = x;
+        this.posY = y;
         this.name = name;
         this.type = type;
         this.value = value;

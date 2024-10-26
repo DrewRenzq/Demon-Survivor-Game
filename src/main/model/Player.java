@@ -13,7 +13,7 @@ import persistence.Writable;
  * and different states (max health, defense, attack)
  */
 
-public class Player implements Writable{
+public class Player implements Writable {
     private static final int BASE_STATES = 10;
 
     private int posX;
@@ -58,7 +58,7 @@ public class Player implements Writable{
             this.posX += 1;
         } else if (direction == 3) {
             this.posY += 1;
-        } else if (direction == 4) {
+        } else {
             this.posX -= 1;
         }
     }
@@ -69,19 +69,20 @@ public class Player implements Writable{
         this.inventory.add(item);
     }
 
-    // MODIFIES: this
-    // EFFECTS: use an item to change states
-    public void useItem(Item item) {
-        int type = item.getType();
-        int value = item.getValue();
-        if (type == 0) {
-            this.health = maxHealth;
-        } else if (type == 1) {
-            this.maxHealth += value;
-        } else if (type == 2) {
-            this.attack += value;
-        }
-    }
+    // // MODIFIES: this
+    // // EFFECTS: use an item to change states
+    // public void useItem(Item item) {
+    //     int type = item.getType();
+    //     int value = item.getValue();
+    //     if (type == 0) {
+    //         this.health = maxHealth;
+    //     } else if (type == 1) {
+    //         this.maxHealth += value;
+    //     } 
+    //     // else if (type == 2) {
+    //     //     this.attack += value;
+    //     // }
+    // }
 
     // MODIFIES: this
     // EFFECTS: use an item in inventory to change states, after use item gone
@@ -93,7 +94,7 @@ public class Player implements Writable{
             this.health = maxHealth;
         } else if (type == 1) {
             this.maxHealth += value;
-        } else if (type == 2) {
+        } else {
             this.attack += value;
         }
         this.inventory.remove(index);

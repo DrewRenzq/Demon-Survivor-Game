@@ -48,11 +48,11 @@ public class Enemy implements Writable {
     //
     //EFFECTS: enemy health decreases when attacked
     public void takeDamage(int damage) {
-        if (this.health >= damage) {
+        if (this.health > damage) {
             this.health -= damage;
-        } else if (this.health < damage) {
+        } else {
             this.health = 0;
-        }
+        } 
     }
 
     //EFFECTS: enemy drop the item (removed) it carries, at position it dies
@@ -74,21 +74,24 @@ public class Enemy implements Writable {
         return this.health;
     }
 
-    public int getAttack() {
-        return this.attack;
-    }
+    // public int getAttack() {
+    //     return this.attack;
+    // }
 
     public Item getItem() {
         return this.item;
     }
 
-    //For testing
     public void setItem(Item a) {
         this.item = a;
     }
 
     public void setHealth(int x) {
         this.health = x;
+    }
+
+    public void setAttack(int x) {
+        this.attack = x;
     }
 
     //EFFECTS: produce a JSONObject to represent a Enemy object
