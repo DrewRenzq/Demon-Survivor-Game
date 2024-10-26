@@ -26,6 +26,7 @@ public class Item implements Writable {
     }
 
     //For testing, constructor with certain effect
+    //EFFECTS: construct an item with a name and effect
     public Item(String name,int type, int value) {
         this.name = name;
         this.type = type;
@@ -33,6 +34,7 @@ public class Item implements Writable {
     }
 
     //For testing, constructor with certain effect
+    //EFFECTS: construct an item with every field provided
     public Item(int x, int y, String name,int type, int value) {
         this.posX = x;
         this.posY = y;

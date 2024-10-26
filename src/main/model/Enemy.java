@@ -45,7 +45,6 @@ public class Enemy implements Writable {
         }
     }
 
-    //
     //EFFECTS: enemy health decreases when attacked
     public void takeDamage(int damage) {
         if (this.health > damage) {
@@ -73,10 +72,6 @@ public class Enemy implements Writable {
     public int getHealth() {
         return this.health;
     }
-
-    // public int getAttack() {
-    //     return this.attack;
-    // }
 
     public Item getItem() {
         return this.item;
