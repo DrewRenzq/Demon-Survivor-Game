@@ -11,22 +11,28 @@ import model.*;
 public class GamePanel extends JPanel {
     private SurvivorGame game;
 
+    private Image playerImage;
+    private Image enemyImage;
+
     // Constructs a game panel
-    //Effect: render survivor game with preferred size and white background
+    // Effect: render survivor game with preferred size and white background
     public GamePanel(SurvivorGame game) {
         setPreferredSize(new Dimension(SurvivorGame.WIDTH, SurvivorGame.HEIGHT));
         setBackground(Color.WHITE);
         this.game = game;
+        playerImage = new ImageIcon("./data/playerImage.jpg").getImage();
+        enemyImage = new ImageIcon("./data/enemyImage2.jpg").getImage();
         setFocusable(false);
     }
 
-    //Effect: repaint game according to update
+    // Effect: repaint game according to update
     public void updateGame(SurvivorGame newGame) {
         this.game = newGame;
+
         repaint();
     }
 
-    //super implementation
+    // super implementation
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -38,17 +44,13 @@ public class GamePanel extends JPanel {
     }
 
     // Draws the game
-	// modifies: g
-	// effects:  draws the game onto g
+    // modifies: g
+    // effects: draws the game onto g
     private void drawGame(Graphics g, int gridSize, int cellSize) {
-
-        drawGrid(g, gridSize, cellSize);
-
         drawPlayer(g, cellSize);
-
-
         drawEnemies(g, cellSize);
 
+        drawGrid(g, gridSize, cellSize);
 
         drawItems(g, cellSize);
 
@@ -56,8 +58,8 @@ public class GamePanel extends JPanel {
     }
 
     // Draws the Inventory
-	// modifies: g
-	// effects:  draws the Inventory onto g
+    // modifies: g
+    // effects: draws the Inventory onto g
     private void drawInventory(Graphics g) {
         Player player = game.getPlayer();
         if (game.getShowInfo()) {
@@ -79,8 +81,8 @@ public class GamePanel extends JPanel {
     }
 
     // Draws the Items
-	// modifies: g
-	// effects:  draws the Items onto g     
+    // modifies: g
+    // effects: draws the Items onto g
     private void drawItems(Graphics g, int cellSize) {
         g.setColor(Color.GREEN);
         for (Item item : game.getItems()) {
@@ -89,35 +91,36 @@ public class GamePanel extends JPanel {
     }
 
     // Draws the Enemies
-	// modifies: g
-	// effects:  draws the Enemies onto g
+    // modifies: g
+    // effects: draws the Enemies onto g
     private void drawEnemies(Graphics g, int cellSize) {
         g.setColor(Color.RED);
         for (Enemy enemy : game.getEnemies()) {
-            g.fillRect(enemy.getPosX() * cellSize, enemy.getPosY() * cellSize, cellSize, cellSize);
+            g.drawImage(enemyImage,enemy.getPosX() * cellSize, enemy.getPosY() * cellSize,30,30,this);
         }
     }
 
     // Draws the Player
-	// modifies: g
-	// effects:  draws the Player onto g
+    // modifies: g
+    // effects: draws the Player onto g
     private void drawPlayer(Graphics g, int cellSize) {
         Player player = game.getPlayer();
         int playerX = player.getPosX() * cellSize;
         int playerY = player.getPosY() * cellSize;
 
-        g.setColor(Color.BLACK);
-        Polygon playerTriangle = new Polygon(
-                new int[]{playerX + cellSize / 2, playerX, playerX + cellSize},
-                new int[]{playerY, playerY + cellSize, playerY + cellSize},
-                3
-        );
-        g.fillPolygon(playerTriangle);
+        g.drawImage(playerImage, playerX, playerY, 30, 30, this);
+        // g.setColor(Color.BLACK);
+        // Polygon playerTriangle = new Polygon(
+        // new int[]{playerX + cellSize / 2, playerX, playerX + cellSize},
+        // new int[]{playerY, playerY + cellSize, playerY + cellSize},
+        // 3
+        // );
+        // g.fillPolygon(playerTriangle);
     }
 
     // Draws the Grid
-	// modifies: g
-	// effects:  draws the Grid onto g
+    // modifies: g
+    // effects: draws the Grid onto g
     private void drawGrid(Graphics g, int gridSize, int cellSize) {
         g.setColor(Color.LIGHT_GRAY);
         for (int i = 0; i <= gridSize; i++) {
