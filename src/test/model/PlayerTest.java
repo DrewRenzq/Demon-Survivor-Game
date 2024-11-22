@@ -2,6 +2,7 @@ package model;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import java.awt.event.KeyEvent;
 
 
 import org.junit.jupiter.api.BeforeEach;
@@ -29,19 +30,19 @@ public class PlayerTest {
         assertEquals(0,slayer.getPosX());
         assertEquals(0,slayer.getPosY());
         //move right
-        slayer.move(2);
+        slayer.move(KeyEvent.VK_D);
         assertEquals(1,slayer.getPosX());
         assertEquals(0,slayer.getPosY());
         //move down
-        slayer.move(3);
+        slayer.move(KeyEvent.VK_S);
         assertEquals(1,slayer.getPosX());
         assertEquals(1,slayer.getPosY());
         //move up
-        slayer.move(1);
+        slayer.move(KeyEvent.VK_W);
         assertEquals(1,slayer.getPosX());
         assertEquals(0,slayer.getPosY());
         //move left
-        slayer.move(4);
+        slayer.move(KeyEvent.VK_A);
         assertEquals(0,slayer.getPosX());
         assertEquals(0,slayer.getPosY());
     }
