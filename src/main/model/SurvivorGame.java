@@ -17,26 +17,27 @@ import persistence.Writable;
 public class SurvivorGame implements Writable {
     public static final int WIDTH = 600;
     public static final int HEIGHT = 600;
-    public static boolean SHOWINFO = false;
+    private boolean showInfo = false;
     private Player player;
     private List<Enemy> enemies;
     private List<Item> items;
     private boolean isGameOver;
 
-    //EFFECTS: construct a survivor game with a player at (10,10), a enemy at random pos within (0-20,0-20)
+    // EFFECTS: construct a survivor game with a player at (10,10), a enemy at
+    // random pos within (0-20,0-20)
     public SurvivorGame() {
         enemies = new ArrayList<Enemy>();
         items = new ArrayList<Item>();
         setUp();
     }
 
-    //EFFECTS: construct a survivor game with a player, and empty enemies and items list
+    // EFFECTS: construct a survivor game with a player, and empty enemies and items
+    // list
     public SurvivorGame(Player p) {
         enemies = new ArrayList<Enemy>();
         items = new ArrayList<Item>();
         player = p;
     }
-
 
     // Set the game
     // MODIFIES: this
@@ -75,11 +76,13 @@ public class SurvivorGame implements Writable {
             addEnemy(new Enemy(x, y));
         }
     }
+
     // Responds to key press codes
     // MODIFIES: this
     // EFFECTS: control player to move, fight, collect and use item in response
     // to given key pressed
     public void keyPressed(int keyCode) {
+
         if (keyCode == KeyEvent.VK_W) {
             player.move(keyCode);
         } else if (keyCode == KeyEvent.VK_S) {
@@ -97,18 +100,16 @@ public class SurvivorGame implements Writable {
         } else if (keyCode == KeyEvent.VK_Q) {
             ifShowInfo();
         }
-    }   
+    }
 
     // MODIFIES: this
     // EFFECTS: player use first item in inventory
     public void playerUseFirstItem() {
         if (player.getInventorySize() > 0) {
             player.useItem(0);
-        } else {
         }
 
     }
-
 
     // MODIFIES: this
     // EFFECTS: player collect an item to inventory, remove collected item in items
@@ -144,22 +145,22 @@ public class SurvivorGame implements Writable {
     // MODIFIES: this
     // EFFECTS: change whether to show information of player or not
     public void ifShowInfo() {
-        SHOWINFO = !SHOWINFO;
+        showInfo = !showInfo;
     }
 
-    //MODIFIES: this
-    //EFFECTS: add a enemy to enemies
+    // MODIFIES: this
+    // EFFECTS: add a enemy to enemies
     public void addEnemy(Enemy e) {
         this.enemies.add(e);
     }
 
-    //MODIFIES: this
-    //EFFECTS: add a item to enemies
+    // MODIFIES: this
+    // EFFECTS: add a item to enemies
     public void addItem(Item i) {
         this.items.add(i);
     }
 
-    //Setter & Getter
+    // Setter & Getter
     public Player getPlayer() {
         return player;
     }
@@ -192,7 +193,16 @@ public class SurvivorGame implements Writable {
         return isGameOver;
     }
 
-    //EFFECTS: produce a JSONObject to represent a Survivor Game object
+    public boolean getShowInfo() {
+        return showInfo;
+    }
+
+    public void setShowInfo(boolean show) {
+        showInfo = show;
+    }
+
+
+    // EFFECTS: produce a JSONObject to represent a Survivor Game object
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
@@ -225,5 +235,4 @@ public class SurvivorGame implements Writable {
         return jsonArray;
     }
 
-    
 }

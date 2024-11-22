@@ -29,7 +29,7 @@ public class SurvivorGameTest {
         game.getItems().add(helmet);
         game.getItems().add(testItem);
         game.getEnemies().add(enemy);
-        SurvivorGame.SHOWINFO = false;
+        game.setShowInfo(false);
     }
 
     @Test
@@ -92,11 +92,11 @@ public class SurvivorGameTest {
 
     @Test
     void testIfShowInfo() {
-        assertFalse(SurvivorGame.SHOWINFO);
+        assertFalse(game.getShowInfo());
         game.ifShowInfo();
-        assertTrue(SurvivorGame.SHOWINFO);
+        assertTrue(game.getShowInfo());
         game.ifShowInfo();
-        assertFalse(SurvivorGame.SHOWINFO);
+        assertFalse(game.getShowInfo());
     }
 
     @Test
@@ -118,10 +118,10 @@ public class SurvivorGameTest {
         game.keyPressed(KeyEvent.VK_E);
         assertEquals(1, game.getPlayer().getInventorySize());
         game.keyPressed(KeyEvent.VK_Q);
-        assertTrue(SurvivorGame.SHOWINFO);
+        assertTrue(game.getShowInfo());
 
         game.keyPressed(KeyEvent.VK_K);
-        assertTrue(SurvivorGame.SHOWINFO);
+        assertTrue(game.getShowInfo());
     }
 
     @Test

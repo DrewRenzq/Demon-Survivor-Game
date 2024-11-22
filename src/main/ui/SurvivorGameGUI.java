@@ -11,7 +11,6 @@ import persistence.JsonWriter;
 
 import model.*;
 
-
 /*
  * Represent a GUI for survivor game, with game panel to visualize the game, and save/load function available
  */
@@ -24,7 +23,7 @@ public class SurvivorGameGUI extends JFrame {
     private JsonReader jsonReader;
 
     // Constructs main window
-	// effects: sets up window in which survivor game will be played
+    // effects: sets up window in which survivor game will be played
     public SurvivorGameGUI() {
         survivorGame = new SurvivorGame();
         jsonWriter = new JsonWriter(JSON_STORE);
@@ -32,7 +31,7 @@ public class SurvivorGameGUI extends JFrame {
 
         setTitle("Survivor Game");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setUndecorated(false);
+        setUndecorated(false);
         addKeyListener(new KeyHandler());
         gamePanel = new GamePanel(survivorGame);
         add(gamePanel, BorderLayout.CENTER);
@@ -46,22 +45,21 @@ public class SurvivorGameGUI extends JFrame {
     }
 
     // Set up timer
-	// modifies: none
-	// effects:  initializes a timer that updates game each
-	//           INTERVAL milliseconds
-	private void addTimer() {
-		Timer t = new Timer(INTERVAL, new ActionListener(){
-			@Override
-			public void actionPerformed(ActionEvent ae) {
-				survivorGame.update();
-				gamePanel.repaint(); 
-			}
-		});
-		
-		t.start();
-	}
+    // modifies: none
+    // effects: initializes a timer that updates game each
+    // INTERVAL milliseconds
+    private void addTimer() {
+        Timer t = new Timer(INTERVAL, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                survivorGame.update();
+                gamePanel.repaint();
+            }
+        });
 
-    
+        t.start();
+    }
+
     /*
      * A key handler to respond to key events
      */
@@ -73,12 +71,12 @@ public class SurvivorGameGUI extends JFrame {
     }
 
     // Centres frame on desktop
-	// modifies: this
-	// effects:  location of frame is set so frame is centred on desktop
-	private void centreOnScreen() {
-		Dimension scrn = Toolkit.getDefaultToolkit().getScreenSize();
-		setLocation((scrn.width - getWidth()) / 2, (scrn.height - getHeight()) / 2);
-	}
+    // modifies: this
+    // effects: location of frame is set so frame is centred on desktop
+    private void centreOnScreen() {
+        Dimension scrn = Toolkit.getDefaultToolkit().getScreenSize();
+        setLocation((scrn.width - getWidth()) / 2, (scrn.height - getHeight()) / 2);
+    }
 
     // Add save and load buttons
     // modifies: none
@@ -97,7 +95,7 @@ public class SurvivorGameGUI extends JFrame {
         add(buttonPanel, BorderLayout.SOUTH);
     }
 
-    //EFFECTS: Saves the game to JSON_STORE
+    // EFFECTS: Saves the game to JSON_STORE
     private void saveGame() {
         try {
             jsonWriter.open();
@@ -121,4 +119,3 @@ public class SurvivorGameGUI extends JFrame {
         }
     }
 }
-

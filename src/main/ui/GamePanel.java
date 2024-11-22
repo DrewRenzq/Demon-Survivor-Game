@@ -60,7 +60,7 @@ public class GamePanel extends JPanel {
 	// effects:  draws the Inventory onto g
     private void drawInventory(Graphics g) {
         Player player = game.getPlayer();
-        if (SurvivorGame.SHOWINFO) {
+        if (game.getShowInfo()) {
             g.setColor(new Color(50, 50, 50, 200));
             g.fillRect(0, 0, getWidth(), getHeight());
 
