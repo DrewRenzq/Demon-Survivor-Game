@@ -42,7 +42,7 @@ public class SurvivorGameTest {
         assertTrue(game.getEnemiesSize() > 0);
         assertTrue(game.getPlayer().getPosX() == 10);
         assertTrue(game.getPlayer().getPosY() == 10);
-        assertTrue(game.getItemsSize() == 1);
+        assertTrue(game.getItemsSize() == 2);
         assertTrue(game.getIsGameOver() == false);
     }
 

@@ -3,6 +3,7 @@ package model;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Random;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -39,7 +40,18 @@ public class SurvivorGame implements Writable {
     // MODIFIES: this
     // EFFECTS: start the game with player in the center of the frame
     // and spawn random enemy
-    private void setUp() {}
+    private void setUp() {
+        player = new Player(10, 10);
+        isGameOver = false;
+
+        Random random = new Random();
+        // Add enemies
+        for (int i = 0; i < 5; i++) {
+            int x = random.nextInt(10);
+            int y = random.nextInt(10);
+            addEnemy(new Enemy(x, y));
+        }
+    }
 
     // MODIFIES: this
     // EFFECTS: player use first item in inventory
@@ -119,6 +131,11 @@ public class SurvivorGame implements Writable {
     public List<Item> getPlayerInventory() {
         return player.getInventory();
     }
+
+    public boolean getIsGameOver() {
+        return isGameOver;
+    }
+
 
     //EFFECTS: produce a JSONObject to represent a Survivor Game object
     @Override
