@@ -20,7 +20,7 @@ public class SurvivorGameTest {
     void runBefore() {
         game = new SurvivorGame();
         heal = new Item(0,0,"heal", 0, 0);
-        helmet = new Item(1,1,"helmet", 1, 1);
+        helmet = new Item(11,11,"helmet", 1, 1);
         testItem = new Item(10,10,"testItem", 0, 0);
         enemy = new Enemy(10, 10);
 
@@ -29,6 +29,7 @@ public class SurvivorGameTest {
         game.getItems().add(helmet);
         game.getItems().add(testItem);
         game.getEnemies().add(enemy);
+        SurvivorGame.SHOWINFO = false;
     }
 
     @Test
@@ -49,7 +50,7 @@ public class SurvivorGameTest {
         assertTrue(game.getEnemiesSize() > 0);
         assertTrue(game.getPlayer().getPosX() == 10);
         assertTrue(game.getPlayer().getPosY() == 10);
-        assertTrue(game.getItemsSize() == 2);
+        assertTrue(game.getItemsSize() == 3);
         assertTrue(game.getIsGameOver() == false);
     }
 
@@ -58,6 +59,8 @@ public class SurvivorGameTest {
         assertFalse(SurvivorGame.SHOWINFO);
         game.ifShowInfo();
         assertTrue(SurvivorGame.SHOWINFO);
+        game.ifShowInfo();
+        assertFalse(SurvivorGame.SHOWINFO);
     }
 
     @Test
@@ -80,30 +83,54 @@ public class SurvivorGameTest {
         assertEquals(1, game.getPlayer().getInventorySize());
         game.keyPressed(KeyEvent.VK_Q);
         assertTrue(SurvivorGame.SHOWINFO);
+
+        game.keyPressed(KeyEvent.VK_K);
+        assertTrue(SurvivorGame.SHOWINFO);
     }
 
     @Test
     void testPlayerCollect() {
-        assertEquals(0, player.getInventorySize());
+        assertEquals(0, game.getPlayer().getInventorySize());
         game.playerCollect(); // Player should collect heal
-        assertEquals(1, player.getInventorySize());
-        assertEquals(1, game.getItems().size()); // Only one item should remain
+        assertEquals(1, game.getPlayer().getInventorySize());
+        assertEquals(2, game.getItems().size()); // Only one item should remain
 
         // Move player to collect helmet
-        player.move(2); // Move right
-        player.move(3); // Move down
         game.playerCollect();
-        assertEquals(2, player.getInventorySize());
-        assertEquals(0, game.getItems().size()); // No items left
+        assertEquals(1, game.getPlayer().getInventorySize());
+        game.getPlayer().move(KeyEvent.VK_D);
+        game.playerCollect();
+        assertEquals(1, game.getPlayer().getInventorySize());
+
+        game.getPlayer().move(KeyEvent.VK_A);
+        game.getPlayer().move(KeyEvent.VK_S);
+        assertEquals(1, game.getPlayer().getInventorySize());
+
+        game.getPlayer().move(KeyEvent.VK_D);
+        game.playerCollect();
+        assertEquals(2, game.getPlayer().getInventorySize());
+        assertEquals(1, game.getItems().size()); // No items left
     }
 
     @Test
     void testPlayerAttack() {
         // Set enemy health and player attack strength for controlled testing
         enemy.setHealth(20);
-        player.setAttack(5);
-        
-        // Assuming `attack` is a method in Player that targets an enemy
+        game.getPlayer().setAttack(5);
+
+        game.getPlayer().move(KeyEvent.VK_D);
+        game.playerAttack();
+        assertEquals(20, enemy.getHealth());
+
+        game.getPlayer().move(KeyEvent.VK_S);
+        game.playerAttack();
+        assertEquals(20, enemy.getHealth());
+
+        game.getPlayer().move(KeyEvent.VK_A);
+        game.playerAttack();
+        assertEquals(20, enemy.getHealth());
+
+        game.getPlayer().move(KeyEvent.VK_W);
         game.playerAttack();
         
         // Verify the enemy health is reduced correctly
@@ -116,20 +143,5 @@ public class SurvivorGameTest {
         
         assertEquals(0, enemy.getHealth()); // Enemy should not have negative health
     }
-
-    // @Test
-    // void testPlayerMove() {
-    //     game.playerMove(1); // Move up
-    //     assertEquals(0, player.getPosY());
-
-    //     game.playerMove(2); // Move right
-    //     assertEquals(1, player.getPosX());
-
-    //     game.playerMove(3); // Move down
-    //     assertEquals(1, player.getPosY());
-
-    //     game.playerMove(4); // Move left
-    //     assertEquals(0, player.getPosX());
-    // }
 
 }

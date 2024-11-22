@@ -12,11 +12,20 @@ public class ItemTest {
     private Item amulet;
     private Enemy demon;
 
+    private Item heal;
+    private Item maxHealth;
+    private Item attack;
+
     @BeforeEach
     void runBefore() {
         potion = new Item();
         amulet = new Item();
         demon = new Enemy(1, 2);
+
+        heal = new Item("heal",0,0);
+        maxHealth = new Item("maxHealth",1,0);
+        attack = new Item("attack",2,0);
+        
     }
 
     @Test
@@ -35,6 +44,13 @@ public class ItemTest {
     }
 
     @Test
+    void testGetEffect() {
+        assertEquals("Heal", heal.getEffect());
+        assertEquals("Increase max health", maxHealth.getEffect());
+        assertEquals("Increase attack", attack.getEffect());
+    }
+
+    @Test
     void testDroppedAt() {
         demon.setItem(potion);
         demon.dropItem();
@@ -44,9 +60,6 @@ public class ItemTest {
         potion.droppedAt(3, 3);
         assertEquals(3, potion.getPosX());
         assertEquals(3, potion.getPosY());
-        
-
-
         
     }
 
