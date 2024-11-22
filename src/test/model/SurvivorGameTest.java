@@ -3,6 +3,8 @@ package model;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.util.List;
+import java.util.ArrayList;
+import java.awt.event.KeyEvent;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -12,13 +14,16 @@ public class SurvivorGameTest {
     private Item heal;
     private Item helmet;
     private Enemy enemy;
+    private List<Enemy> testEnemies;
 
     @BeforeEach
     void runBefore() {
         game = new SurvivorGame();
         heal = new Item(0,0,"heal", 0, 0); // Same position as player, should be collectable
         helmet = new Item(1,1,"helmet", 1, 1); // Adjacent position, to test movement & collection
-        enemy = new Enemy(0, 0);
+        enemy = new Enemy(10, 10);
+        testEnemies= new ArrayList<Enemy> ();
+        testEnemies.add(enemy);
 
         game.getItems().add(heal);
         game.getItems().add(helmet);
@@ -50,6 +55,26 @@ public class SurvivorGameTest {
     void testIfShowInfo() {
         assertFalse(SurvivorGame.SHOWINFO);
         game.ifShowInfo();
+        assertTrue(SurvivorGame.SHOWINFO);
+    }
+
+    @Test
+    void testKeyPressed() {
+        game.keyPressed(KeyEvent.VK_W);
+        assertTrue(game.getPlayer().getPosY() == 9);
+        game.keyPressed(KeyEvent.VK_S);
+        assertTrue(game.getPlayer().getPosY() == 10);
+        game.keyPressed(KeyEvent.VK_A);
+        assertTrue(game.getPlayer().getPosX() == 9);
+        game.keyPressed(KeyEvent.VK_D);
+        assertTrue(game.getPlayer().getPosX() == 10);
+        game.keyPressed(KeyEvent.VK_F);
+        assertTrue(testEnemies.size() == 0);
+        game.keyPressed(KeyEvent.VK_R);
+        assertEquals(1, player.getInventorySize());
+        game.keyPressed(KeyEvent.VK_E);
+        assertEquals(0, player.getInventorySize());
+        game.keyPressed(KeyEvent.VK_Q);
         assertTrue(SurvivorGame.SHOWINFO);
     }
 
