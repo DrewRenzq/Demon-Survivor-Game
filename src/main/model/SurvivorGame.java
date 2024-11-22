@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Random;
+import java.awt.event.KeyEvent;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -57,7 +58,25 @@ public class SurvivorGame implements Writable {
     // MODIFIES: this
     // EFFECTS: control player to move, fight, collect and use item in response
     // to given key pressed
-    public void keyPressed(int keyCode) {}   
+    public void keyPressed(int keyCode) {
+        if (keyCode == KeyEvent.VK_W) {
+            player.move(keyCode);
+        } else if (keyCode == KeyEvent.VK_S) {
+            player.move(keyCode);
+        } else if (keyCode == KeyEvent.VK_A) {
+            player.move(keyCode);
+        } else if (keyCode == KeyEvent.VK_D) {
+            player.move(keyCode);
+        } else if (keyCode == KeyEvent.VK_F) {
+            playerAttack();
+        } else if (keyCode == KeyEvent.VK_R) {
+            playerCollect();
+        } else if (keyCode == KeyEvent.VK_E) {
+            playerUseFirstItem();
+        } else if (keyCode == KeyEvent.VK_Q) {
+            ifShowInfo();
+        }
+    }   
 
     // MODIFIES: this
     // EFFECTS: player use first item in inventory

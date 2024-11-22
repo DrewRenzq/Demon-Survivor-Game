@@ -10,36 +10,38 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class SurvivorGameTest {
     private SurvivorGame game;
-    private Player player;
     private Item heal;
     private Item helmet;
+    private Item testItem;
     private Enemy enemy;
     private List<Enemy> testEnemies;
 
     @BeforeEach
     void runBefore() {
         game = new SurvivorGame();
-        heal = new Item(0,0,"heal", 0, 0); // Same position as player, should be collectable
-        helmet = new Item(1,1,"helmet", 1, 1); // Adjacent position, to test movement & collection
+        heal = new Item(0,0,"heal", 0, 0);
+        helmet = new Item(1,1,"helmet", 1, 1);
+        testItem = new Item(10,10,"testItem", 0, 0);
         enemy = new Enemy(10, 10);
-        testEnemies= new ArrayList<Enemy> ();
-        testEnemies.add(enemy);
+
 
         game.getItems().add(heal);
         game.getItems().add(helmet);
+        game.getItems().add(testItem);
+        game.getEnemies().add(enemy);
     }
 
     @Test
     void testPlayerUseFirstItem() {
         // Test using an item when inventory is not empty
-        player.collect(heal);
-        assertEquals(1, player.getInventorySize());
+        game.getPlayer().collect(heal);
+        assertEquals(1, game.getPlayer().getInventorySize());
         game.playerUseFirstItem(); // Should use heal and potentially restore health
-        assertEquals(0, player.getInventorySize()); // Item used and removed
+        assertEquals(0, game.getPlayer().getInventorySize()); // Item used and removed
 
         // Test attempting to use when inventory is empty
         game.playerUseFirstItem(); // Should trigger no-operation message
-        assertEquals(0, player.getInventorySize()); // Still empty
+        assertEquals(0, game.getPlayer().getInventorySize()); // Still empty
     }
 
     @Test
@@ -68,12 +70,14 @@ public class SurvivorGameTest {
         assertTrue(game.getPlayer().getPosX() == 9);
         game.keyPressed(KeyEvent.VK_D);
         assertTrue(game.getPlayer().getPosX() == 10);
+
+        int size = game.getEnemiesSize();
         game.keyPressed(KeyEvent.VK_F);
-        assertTrue(testEnemies.size() == 0);
+        assertTrue(game.getEnemiesSize() == (size-1));
         game.keyPressed(KeyEvent.VK_R);
-        assertEquals(1, player.getInventorySize());
+        assertEquals(2, game.getPlayer().getInventorySize());
         game.keyPressed(KeyEvent.VK_E);
-        assertEquals(0, player.getInventorySize());
+        assertEquals(1, game.getPlayer().getInventorySize());
         game.keyPressed(KeyEvent.VK_Q);
         assertTrue(SurvivorGame.SHOWINFO);
     }
