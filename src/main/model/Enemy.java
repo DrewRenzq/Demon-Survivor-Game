@@ -9,7 +9,7 @@ import persistence.Writable;
  */
 
 public class Enemy implements Writable {
-    private static final int BASE_STATES = 1;
+    private static final int BASE_STATES = 10;
     private int posX;
     private int posY;
     private int health;
