@@ -14,16 +14,14 @@ public class SurvivorGameTest {
     private Item helmet;
     private Item testItem;
     private Enemy enemy;
-    private List<Enemy> testEnemies;
 
     @BeforeEach
     void runBefore() {
         game = new SurvivorGame();
-        heal = new Item(0,0,"heal", 0, 0);
-        helmet = new Item(11,11,"helmet", 1, 1);
-        testItem = new Item(10,10,"testItem", 0, 0);
+        heal = new Item(0, 0, "heal", 0, 0);
+        helmet = new Item(11, 11, "helmet", 1, 1);
+        testItem = new Item(10, 10, "testItem", 0, 0);
         enemy = new Enemy(10, 10);
-
 
         game.getItems().add(heal);
         game.getItems().add(helmet);
@@ -37,14 +35,14 @@ public class SurvivorGameTest {
         Player p = new Player();
 
         SurvivorGame testGame = new SurvivorGame(p);
-        assertEquals(testGame.getPlayer(),p);
+        assertEquals(testGame.getPlayer(), p);
         assertTrue(testGame.getEnemiesSize() == 0);
         assertTrue(testGame.getItemsSize() == 0);
     }
 
     @Test
     void testUpDate() {
-        //testSpawnEnemis in update
+        // testSpawnEnemis in update
         int size = game.getEnemiesSize();
         assertTrue(game.getEnemiesSize() > 0);
         game.update();
@@ -112,7 +110,7 @@ public class SurvivorGameTest {
 
         int size = game.getEnemiesSize();
         game.keyPressed(KeyEvent.VK_F);
-        assertTrue(game.getEnemiesSize() == (size-1));
+        assertTrue(game.getEnemiesSize() == (size - 1));
         game.keyPressed(KeyEvent.VK_R);
         assertEquals(2, game.getPlayer().getInventorySize());
         game.keyPressed(KeyEvent.VK_E);
@@ -168,7 +166,7 @@ public class SurvivorGameTest {
 
         game.getPlayer().move(KeyEvent.VK_W);
         game.playerAttack();
-        
+
         // Verify the enemy health is reduced correctly
         assertEquals(15, enemy.getHealth());
 
@@ -176,7 +174,7 @@ public class SurvivorGameTest {
         game.playerAttack();
         game.playerAttack();
         game.playerAttack();
-        
+
         assertEquals(0, enemy.getHealth()); // Enemy should not have negative health
     }
 
