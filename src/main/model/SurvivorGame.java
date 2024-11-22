@@ -13,15 +13,19 @@ import persistence.Writable;
  * list of items
  */
 public class SurvivorGame implements Writable {
+    public static final int WIDTH = 600;
+    public static final int HEIGHT = 600;
+    public static boolean SHOWINFO = false;
     private Player player;
     private List<Enemy> enemies;
     private List<Item> items;
+    private boolean isGameOver;
 
     //EFFECTS: construct a survivor game with a player at (0,0), a enemy at random pos within (0-5,0-5) and a item
     public SurvivorGame() {
-        player = new Player(0, 0);
         enemies = new ArrayList<Enemy>();
         items = new ArrayList<Item>();
+        setUp();
     }
 
     //EFFECTS: construct a survivor game with a given player, and empty list of enemies and items
@@ -30,6 +34,12 @@ public class SurvivorGame implements Writable {
         enemies = new ArrayList<Enemy>();
         items = new ArrayList<Item>();
     }
+
+    // Set the game
+    // MODIFIES: this
+    // EFFECTS: start the game with player in the center of the frame
+    // and spawn random enemy
+    private void setUp() {}
 
     // MODIFIES: this
     // EFFECTS: player use first item in inventory
