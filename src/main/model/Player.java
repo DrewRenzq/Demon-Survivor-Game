@@ -94,8 +94,16 @@ public class Player implements Writable {
         return this.posX;
     }
 
+    public void setPosX(int x) {
+        posX = x;
+    }
+
     public int getPosY() {
         return this.posY;
+    }
+
+    public void setPosY(int x) {
+        posY = x;
     }
 
     public int getInventorySize() {
