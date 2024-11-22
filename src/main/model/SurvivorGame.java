@@ -37,7 +37,6 @@ public class SurvivorGame implements Writable {
         if (player.getInventorySize() > 0) {
             player.useItem(0);
         } else {
-            System.out.println("You have nothing!");
         }
 
     }
@@ -52,7 +51,6 @@ public class SurvivorGame implements Writable {
             if ((item.getPosX() == player.getPosX()) && (item.getPosY() == player.getPosY())) {
                 player.collect(item);
                 iterator.remove();
-                System.out.println("Collected: " + item.getName());
             }
         }
     }
@@ -65,12 +63,11 @@ public class SurvivorGame implements Writable {
             Enemy enemy = iterator.next();
             if ((enemy.getPosX() == player.getPosX()) && (enemy.getPosY() == player.getPosY())) {
                 enemy.takeDamage(player.getAttack());
-                System.out.println(player.getAttack() + " damage dealt!");
                 if (enemy.getHealth() <= 0) {
                     enemy.dropItem();
                     items.add(enemy.getItem());// drop item on enemy's death
                     iterator.remove();
-                    System.out.println("Enemy Killed");
+
                 }
             }
         }
