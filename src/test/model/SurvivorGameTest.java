@@ -43,6 +43,19 @@ public class SurvivorGameTest {
     }
 
     @Test
+    void testSpawnEnemies() {
+        assertTrue(game.getEnemiesSize() > 0);
+        List<Enemy> newEnemies = new ArrayList<Enemy>();
+        game.setEnemies(newEnemies);
+        assertTrue(game.getEnemiesSize() == 0);
+
+        game.spawnEnemy();
+        assertTrue(game.getEnemiesSize() > 0);
+
+
+    }
+
+    @Test
     void testPlayerUseFirstItem() {
         // Test using an item when inventory is not empty
         game.getPlayer().collect(heal);

@@ -64,7 +64,7 @@ public class SurvivorGame implements Writable {
 
     // MODIFIES: this
     // EFFECTS: spawn more enemies
-    private void spawnEnemy() {
+    public void spawnEnemy() {
 
     }
     // Responds to key press codes
@@ -158,6 +158,10 @@ public class SurvivorGame implements Writable {
 
     public List<Enemy> getEnemies() {
         return enemies;
+    }
+
+    public void setEnemies(List<Enemy> l) {
+        this.enemies = l;
     }
 
     public List<Item> getItems() {
