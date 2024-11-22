@@ -30,13 +30,6 @@ public class SurvivorGame implements Writable {
         setUp();
     }
 
-    //EFFECTS: construct a survivor game with a given player, and empty list of enemies and items
-    public SurvivorGame(Player p) {
-        player = p;
-        enemies = new ArrayList<Enemy>();
-        items = new ArrayList<Item>();
-    }
-
     // Set the game
     // MODIFIES: this
     // EFFECTS: start the game with player in the center of the frame
@@ -167,6 +160,9 @@ public class SurvivorGame implements Writable {
         return isGameOver;
     }
 
+    public void setPlayer(Player p) {
+        this.player = p;
+    }
 
     //EFFECTS: produce a JSONObject to represent a Survivor Game object
     @Override
