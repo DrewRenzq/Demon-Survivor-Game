@@ -15,6 +15,7 @@ public class ItemTest {
     private Item heal;
     private Item maxHealth;
     private Item attack;
+    private Item fake;
 
     @BeforeEach
     void runBefore() {
@@ -25,6 +26,7 @@ public class ItemTest {
         heal = new Item("heal",0,0);
         maxHealth = new Item("maxHealth",1,0);
         attack = new Item("attack",2,0);
+        fake = new Item("fake",5,0);
         
     }
 
@@ -48,6 +50,7 @@ public class ItemTest {
         assertEquals("Heal", heal.getEffect());
         assertEquals("Increase max health", maxHealth.getEffect());
         assertEquals("Increase attack", attack.getEffect());
+        assertEquals("", fake.getEffect());
     }
 
     @Test

@@ -28,7 +28,7 @@ public class JsonReaderTest extends JsonTest {
         JsonReader reader = new JsonReader("./data/testReaderInitStateGame.json");
         try {
             SurvivorGame sg = reader.read();
-            assertEquals(5, sg.getEnemiesSize());
+            assertEquals(0, sg.getEnemiesSize());
             assertEquals(0, sg.getItemsSize());
             List<Item> items = sg.getPlayerInventory();
             Player player = sg.getPlayer();
@@ -43,7 +43,7 @@ public class JsonReaderTest extends JsonTest {
         JsonReader reader = new JsonReader("./data/testReaderSavedGame.json");
         try {
             SurvivorGame sg = reader.read();
-            assertEquals(6, sg.getEnemiesSize());
+            assertEquals(1, sg.getEnemiesSize());
             assertEquals(1, sg.getItemsSize());
             List<Item> items = sg.getPlayerInventory();
             Player player = sg.getPlayer();

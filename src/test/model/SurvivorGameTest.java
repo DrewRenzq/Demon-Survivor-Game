@@ -33,6 +33,16 @@ public class SurvivorGameTest {
     }
 
     @Test
+    void testEmptyConstructor() {
+        Player p = new Player();
+
+        SurvivorGame testGame = new SurvivorGame(p);
+        assertEquals(testGame.getPlayer(),p);
+        assertTrue(testGame.getEnemiesSize() == 0);
+        assertTrue(testGame.getItemsSize() == 0);
+    }
+
+    @Test
     void testPlayerUseFirstItem() {
         // Test using an item when inventory is not empty
         game.getPlayer().collect(heal);

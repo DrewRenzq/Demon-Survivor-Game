@@ -36,11 +36,11 @@ public class JsonWriterTest extends JsonTest {
 
             JsonReader reader = new JsonReader("./data/testWriterInitStateGame.json");
             sg = reader.read();
-            assertEquals(0, sg.getEnemiesSize());
+            assertEquals(5, sg.getEnemiesSize());
             assertEquals(0, sg.getItemsSize());
             List<Item> items = sg.getPlayerInventory();
             Player player = sg.getPlayer();
-            checkPlayer(0, 0, 10, 10, 10, items, player);
+            checkPlayer(10,10, 10, 10, 10, items, player);
             sg = reader.read();
         } catch (IOException e) {
             fail("Exception should not have been thrown");
@@ -69,11 +69,11 @@ public class JsonWriterTest extends JsonTest {
 
             JsonReader reader = new JsonReader("./data/testWriterSavedGame.json");
             sg = reader.read();
-            assertEquals(1, sg.getEnemiesSize());
+            assertEquals(6, sg.getEnemiesSize());
             assertEquals(1, sg.getItemsSize());
             List<Item> items = sg.getPlayerInventory();
             Player player = sg.getPlayer();
-            checkPlayer(0, 0, 10, 10, 10, items, player);
+            checkPlayer(10, 10, 10, 10, 10, items, player);
             
         } catch (IOException e) {
             fail("Exception should not have been thrown");

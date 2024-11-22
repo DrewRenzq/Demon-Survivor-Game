@@ -46,8 +46,7 @@ public class JsonReader {
     private SurvivorGame parseSurvivorGame(JSONObject jsonObject) {
         JSONObject playerObject = jsonObject.getJSONObject("player");
         Player player = parsePlayer(playerObject);
-        SurvivorGame sg = new SurvivorGame();
-        sg.setPlayer(player);
+        SurvivorGame sg = new SurvivorGame(player);
         addEnemies(sg, jsonObject);
         addItems(sg, jsonObject);
         return sg;

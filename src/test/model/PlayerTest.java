@@ -45,6 +45,10 @@ public class PlayerTest {
         slayer.move(KeyEvent.VK_A);
         assertEquals(0,slayer.getPosX());
         assertEquals(0,slayer.getPosY());
+
+        slayer.move(KeyEvent.VK_K);
+        assertEquals(0,slayer.getPosX());
+        assertEquals(0,slayer.getPosY());
     }
 
     @Test

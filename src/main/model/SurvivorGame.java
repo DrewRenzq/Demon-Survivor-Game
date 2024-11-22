@@ -23,12 +23,20 @@ public class SurvivorGame implements Writable {
     private List<Item> items;
     private boolean isGameOver;
 
-    //EFFECTS: construct a survivor game with a player at (0,0), a enemy at random pos within (0-5,0-5) and a item
+    //EFFECTS: construct a survivor game with a player at (10,10), a enemy at random pos within (0-20,0-20)
     public SurvivorGame() {
         enemies = new ArrayList<Enemy>();
         items = new ArrayList<Item>();
         setUp();
     }
+
+    //EFFECTS: construct a survivor game with a player, and empty enemies and items list
+    public SurvivorGame(Player p) {
+        enemies = new ArrayList<Enemy>();
+        items = new ArrayList<Item>();
+        player = p;
+    }
+
 
     // Set the game
     // MODIFIES: this
@@ -41,8 +49,8 @@ public class SurvivorGame implements Writable {
         Random random = new Random();
         // Add enemies
         for (int i = 0; i < 5; i++) {
-            int x = random.nextInt(10);
-            int y = random.nextInt(10);
+            int x = random.nextInt(20);
+            int y = random.nextInt(20);
             addEnemy(new Enemy(x, y));
         }
     }
@@ -158,10 +166,6 @@ public class SurvivorGame implements Writable {
 
     public boolean getIsGameOver() {
         return isGameOver;
-    }
-
-    public void setPlayer(Player p) {
-        this.player = p;
     }
 
     //EFFECTS: produce a JSONObject to represent a Survivor Game object
