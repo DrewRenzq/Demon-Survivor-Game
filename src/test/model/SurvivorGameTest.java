@@ -15,15 +15,13 @@ public class SurvivorGameTest {
 
     @BeforeEach
     void runBefore() {
-        player = new Player(0, 0);
-        game = new SurvivorGame(player);
+        game = new SurvivorGame();
         heal = new Item(0,0,"heal", 0, 0); // Same position as player, should be collectable
         helmet = new Item(1,1,"helmet", 1, 1); // Adjacent position, to test movement & collection
         enemy = new Enemy(0, 0);
 
         game.getItems().add(heal);
         game.getItems().add(helmet);
-        game.getEnemies().add(enemy);
     }
 
     @Test
@@ -37,6 +35,15 @@ public class SurvivorGameTest {
         // Test attempting to use when inventory is empty
         game.playerUseFirstItem(); // Should trigger no-operation message
         assertEquals(0, player.getInventorySize()); // Still empty
+    }
+
+    @Test
+    void testSetUp() {
+        assertTrue(game.getEnemiesSize() > 0);
+        assertTrue(game.getPlayer().getPosX() == 10);
+        assertTrue(game.getPlayer().getPosY() == 10);
+        assertTrue(game.getItemsSize() == 1);
+        assertTrue(game.getIsGameOver() == false);
     }
 
     @Test
