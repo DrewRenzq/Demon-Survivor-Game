@@ -2,6 +2,8 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.awt.event.KeyEvent;
+
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -46,22 +48,21 @@ public class Player implements Writable {
     }
 
     // MODIFIES: this
-    // EFFECTS: change player's position,
-    // up == 1
-    // right == 2
-    // down == 3
-    // left == 4
+    // EFFECTS: change player's position
     public void move(int direction) {
-        if (direction == 1) {
+        if (direction == KeyEvent.VK_W) {
             this.posY -= 1;
-        } else if (direction == 2) {
+        } else if (direction == KeyEvent.VK_D) {
             this.posX += 1;
-        } else if (direction == 3) {
+        } else if (direction == KeyEvent.VK_S) {
             this.posY += 1;
-        } else {
+        } else if (direction == KeyEvent.VK_A) {
             this.posX -= 1;
         }
+
+        //handleBoundary();
     }
+
 
     // MODIFIES: this
     // EFFECTS: add an item to player's inventory
@@ -94,17 +95,10 @@ public class Player implements Writable {
         return this.posX;
     }
 
-    public void setPosX(int x) {
-        posX = x;
-    }
-
     public int getPosY() {
         return this.posY;
     }
 
-    public void setPosY(int x) {
-        posY = x;
-    }
 
     public int getInventorySize() {
         return this.inventory.size();
