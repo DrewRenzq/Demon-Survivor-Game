@@ -55,6 +55,8 @@ public class Item implements Writable {
         return this.type;
     }
 
+    
+    //EFFECTS: return string indicating the effect of item
     public String getEffect() {
         String e = "";
         if (type == 0) {

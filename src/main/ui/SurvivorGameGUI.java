@@ -23,6 +23,8 @@ public class SurvivorGameGUI extends JFrame {
     private JsonWriter jsonWriter;
     private JsonReader jsonReader;
 
+    // Constructs main window
+	// effects: sets up window in which survivor game will be played
     public SurvivorGameGUI() {
         survivorGame = new SurvivorGame();
         jsonWriter = new JsonWriter(JSON_STORE);

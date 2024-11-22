@@ -86,8 +86,6 @@ public class Player implements Writable {
         this.inventory.remove(index);
     }
 
-    // MODIFIES: this
-    // EFFECTS: use an item to increase states
 
     // Setter and Getter
 
