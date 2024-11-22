@@ -55,6 +55,16 @@ public class SurvivorGameGUI extends JFrame {
 		t.start();
 	}
 
+    
+    /*
+     * A key handler to respond to key events
+     */
+    private class KeyHandler extends KeyAdapter {
+        @Override
+        public void keyPressed(KeyEvent e) {
+            survivorGame.keyPressed(e.getKeyCode());
+        }
+    }
 
     // Centres frame on desktop
 	// modifies: this
