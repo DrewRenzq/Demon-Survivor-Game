@@ -45,7 +45,10 @@ public class SurvivorGameTest {
     @Test
     void testUpDate() {
         //testSpawnEnemis in update
+        int size = game.getEnemiesSize();
         assertTrue(game.getEnemiesSize() > 0);
+        game.update();
+        assertTrue(game.getEnemiesSize() == size);
         List<Enemy> newEnemies = new ArrayList<Enemy>();
         game.setEnemies(newEnemies);
         assertTrue(game.getEnemiesSize() == 0);

@@ -58,9 +58,9 @@ public class SurvivorGame implements Writable {
     // MODIFIES: this
     // EFFECTS: update game on clock tick
     public void update() {
-        // if (getEnemiesSize() <= 0) {
-        //     spawnEnemy();
-        // }
+        if (getEnemiesSize() == 0) {
+            spawnEnemy();
+        }
 
     }
 
