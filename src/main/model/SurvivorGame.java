@@ -58,14 +58,22 @@ public class SurvivorGame implements Writable {
     // MODIFIES: this
     // EFFECTS: update game on clock tick
     public void update() {
-        spawnEnemy();
+        // if (getEnemiesSize() <= 0) {
+        //     spawnEnemy();
+        // }
 
     }
 
     // MODIFIES: this
     // EFFECTS: spawn more enemies
     public void spawnEnemy() {
-
+        Random random = new Random();
+        // Add enemies
+        for (int i = 0; i < 5; i++) {
+            int x = random.nextInt(20);
+            int y = random.nextInt(20);
+            addEnemy(new Enemy(x, y));
+        }
     }
     // Responds to key press codes
     // MODIFIES: this

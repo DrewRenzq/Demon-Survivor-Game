@@ -51,8 +51,6 @@ public class SurvivorGameTest {
 
         game.spawnEnemy();
         assertTrue(game.getEnemiesSize() > 0);
-
-
     }
 
     @Test
