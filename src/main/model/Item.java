@@ -21,7 +21,7 @@ public class Item implements Writable {
         Random random = new Random();
         this.name = possibleNames [random.nextInt(possibleNames.length)];
         this.type = random.nextInt(3); // 0 - heal, 1 - increase max health, 2 - attack
-        this.value = random.nextInt(11); // 0 - 10
+        this.value = random.nextInt(10) + 1; // 1 - 11
 
     }
 
@@ -54,6 +54,19 @@ public class Item implements Writable {
     public int getType() {
         return this.type;
     }
+
+    public String getEffect() {
+        String e = "";
+        if (type == 0) {
+            e = "Heal";
+        } else if (type == 1) {
+            e = "Increase max health";
+        } else if (type == 2) {
+            e = "Increase attack";
+        }
+        return e;
+    }
+    
 
     public int getValue() {
         return this.value;
