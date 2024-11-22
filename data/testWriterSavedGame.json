@@ -1,17 +1,84 @@
 {
-    "enemies": [{
-        "posX": 4,
-        "posY": 1,
-        "item": {
-            "posX": 0,
-            "posY": 0,
-            "name": "Armor",
-            "type": 2,
-            "value": 9
+    "enemies": [
+        {
+            "posX": 4,
+            "posY": 15,
+            "item": {
+                "posX": 0,
+                "posY": 0,
+                "name": "Armor",
+                "type": 0,
+                "value": 6
+            },
+            "attack": 10,
+            "health": 10
         },
-        "attack": 1,
-        "health": 1
-    }],
+        {
+            "posX": 11,
+            "posY": 11,
+            "item": {
+                "posX": 0,
+                "posY": 0,
+                "name": "Helmet",
+                "type": 2,
+                "value": 10
+            },
+            "attack": 10,
+            "health": 10
+        },
+        {
+            "posX": 12,
+            "posY": 6,
+            "item": {
+                "posX": 0,
+                "posY": 0,
+                "name": "Sword",
+                "type": 1,
+                "value": 6
+            },
+            "attack": 10,
+            "health": 10
+        },
+        {
+            "posX": 1,
+            "posY": 17,
+            "item": {
+                "posX": 0,
+                "posY": 0,
+                "name": "Amulet",
+                "type": 1,
+                "value": 5
+            },
+            "attack": 10,
+            "health": 10
+        },
+        {
+            "posX": 19,
+            "posY": 13,
+            "item": {
+                "posX": 0,
+                "posY": 0,
+                "name": "Ring",
+                "type": 1,
+                "value": 9
+            },
+            "attack": 10,
+            "health": 10
+        },
+        {
+            "posX": 4,
+            "posY": 1,
+            "item": {
+                "posX": 0,
+                "posY": 0,
+                "name": "Armor",
+                "type": 2,
+                "value": 9
+            },
+            "attack": 1,
+            "health": 1
+        }
+    ],
     "items": [{
         "posX": 0,
         "posY": 0,
@@ -20,8 +87,8 @@
         "value": 7
     }],
     "player": {
-        "posX": 0,
-        "posY": 0,
+        "posX": 10,
+        "posY": 10,
         "attack": 10,
         "health": 10,
         "maxHealth": 10,

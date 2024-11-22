@@ -1,27 +1,75 @@
 {
-    "enemies": [{
-        "posX": 4,
-        "posY": 1,
-        "item": {
-            "posX": 0,
-            "posY": 0,
-            "name": "Armor",
-            "type": 2,
-            "value": 9
+    "enemies": [
+        {
+            "posX": 6,
+            "posY": 12,
+            "item": {
+                "posX": 0,
+                "posY": 0,
+                "name": "Potion",
+                "type": 2,
+                "value": 6
+            },
+            "attack": 10,
+            "health": 10
         },
-        "attack": 1,
-        "health": 1
-    }],
-    "items": [{
-        "posX": 0,
-        "posY": 0,
-        "name": "Ring",
-        "type": 1,
-        "value": 7
-    }],
+        {
+            "posX": 13,
+            "posY": 11,
+            "item": {
+                "posX": 0,
+                "posY": 0,
+                "name": "Amulet",
+                "type": 0,
+                "value": 9
+            },
+            "attack": 10,
+            "health": 10
+        },
+        {
+            "posX": 16,
+            "posY": 6,
+            "item": {
+                "posX": 0,
+                "posY": 0,
+                "name": "Potion",
+                "type": 0,
+                "value": 10
+            },
+            "attack": 10,
+            "health": 10
+        },
+        {
+            "posX": 10,
+            "posY": 8,
+            "item": {
+                "posX": 0,
+                "posY": 0,
+                "name": "Sword",
+                "type": 2,
+                "value": 3
+            },
+            "attack": 10,
+            "health": 10
+        },
+        {
+            "posX": 18,
+            "posY": 11,
+            "item": {
+                "posX": 0,
+                "posY": 0,
+                "name": "Sword",
+                "type": 1,
+                "value": 3
+            },
+            "attack": 10,
+            "health": 10
+        }
+    ],
+    "items": [],
     "player": {
-        "posX": 1,
-        "posY": 1,
+        "posX": 10,
+        "posY": 10,
         "attack": 10,
         "health": 10,
         "maxHealth": 10,
