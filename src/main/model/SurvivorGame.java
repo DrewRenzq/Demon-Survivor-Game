@@ -98,7 +98,7 @@ public class SurvivorGame implements Writable {
     // MODIFIES: this
     // EFFECTS: change whether to show information of player or not
     public void ifShowInfo() {
-        // SHOWINFO = !SHOWINFO;
+        SHOWINFO = !SHOWINFO;
     }
 
     //MODIFIES: this
