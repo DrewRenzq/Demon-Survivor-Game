@@ -11,6 +11,10 @@ import persistence.JsonWriter;
 
 import model.*;
 
+
+/*
+ * Represent a GUI for survivor game, with game panel to visualize the game, and save/load function available
+ */
 public class SurvivorGameGUI extends JFrame {
     private static final String JSON_STORE = "./data/SurvivorGame.json";
     private static final int INTERVAL = 10;

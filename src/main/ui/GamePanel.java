@@ -5,7 +5,9 @@ import java.awt.*;
 
 import model.*;
 
-// Game Panel with custom rendering
+/*
+ * Represent A GamePanel which render the survivor game in grids
+ */
 public class GamePanel extends JPanel {
     private SurvivorGame game;
 
