@@ -53,7 +53,7 @@ public class SurvivorGameGUI extends JFrame {
 		Timer t = new Timer(INTERVAL, new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent ae) {
-				//survivorGame.update();
+				survivorGame.update();
 				gamePanel.repaint(); 
 			}
 		});

@@ -55,6 +55,18 @@ public class SurvivorGame implements Writable {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: update game on clock tick
+    public void update() {
+        spawnEnemy();
+
+    }
+
+    // MODIFIES: this
+    // EFFECTS: spawn more enemies
+    private void spawnEnemy() {
+
+    }
     // Responds to key press codes
     // MODIFIES: this
     // EFFECTS: control player to move, fight, collect and use item in response
