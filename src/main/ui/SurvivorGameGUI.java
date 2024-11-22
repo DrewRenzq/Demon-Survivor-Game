@@ -28,8 +28,8 @@ public class SurvivorGameGUI extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setUndecorated(false);
         addKeyListener(new KeyHandler());
-        //gamePanel = new GamePanel(survivorGame);
-        //add(gamePanel, BorderLayout.CENTER);
+        gamePanel = new GamePanel(survivorGame);
+        add(gamePanel, BorderLayout.CENTER);
         addSaveAndLoadButtons();
 
         pack();
@@ -47,7 +47,7 @@ public class SurvivorGameGUI extends JFrame {
 		Timer t = new Timer(INTERVAL, new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent ae) {
-				survivorGame.update();
+				//survivorGame.update();
 				gamePanel.repaint(); 
 			}
 		});
