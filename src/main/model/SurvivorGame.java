@@ -53,6 +53,12 @@ public class SurvivorGame implements Writable {
         }
     }
 
+    // Responds to key press codes
+    // MODIFIES: this
+    // EFFECTS: control player to move, fight, collect and use item in response
+    // to given key pressed
+    public void keyPressed(int keyCode) {}   
+
     // MODIFIES: this
     // EFFECTS: player use first item in inventory
     public void playerUseFirstItem() {
