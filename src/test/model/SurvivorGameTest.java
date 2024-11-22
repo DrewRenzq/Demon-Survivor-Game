@@ -47,6 +47,13 @@ public class SurvivorGameTest {
     }
 
     @Test
+    void testIfShowInfo() {
+        assertFalse(SurvivorGame.SHOWINFO);
+        game.ifShowInfo();
+        assertTrue(SurvivorGame.SHOWINFO);
+    }
+
+    @Test
     void testPlayerCollect() {
         assertEquals(0, player.getInventorySize());
         game.playerCollect(); // Player should collect heal
