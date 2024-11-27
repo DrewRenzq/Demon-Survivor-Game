@@ -21,7 +21,7 @@ public class GamePanel extends JPanel {
         setBackground(Color.WHITE);
         this.game = game;
         playerImage = new ImageIcon("./data/playerImage.jpg").getImage();
-        enemyImage = new ImageIcon("./data/enemyImage2.jpg").getImage();
+        enemyImage = new ImageIcon("./data/enemyImage.jpg").getImage();
         setFocusable(false);
     }
 
