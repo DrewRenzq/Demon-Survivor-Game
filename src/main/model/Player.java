@@ -64,14 +64,17 @@ public class Player implements Writable {
     }
 
 
-    // MODIFIES: this
-    // EFFECTS: add an item to player's inventory
+    // MODIFIES: this, EventLog
+    // EFFECTS: add an item to player's inventory, add event into event log
     public void collect(Item item) {
         this.inventory.add(item);
+        //Log
+        EventLog.getInstance().logEvent(new Event("Item " + item.getName() + " collected."));
     }
 
-    // MODIFIES: this
-    // EFFECTS: use an item in inventory to change states, after use item gone
+    // MODIFIES: this, EventLog
+    // EFFECTS: use an item in inventory to change states, after use item gone,
+    //          add event into event log
     public void useItem(int index) {
         Item item = this.inventory.get(index);
         int type = item.getType();
@@ -84,6 +87,8 @@ public class Player implements Writable {
             this.attack += value;
         }
         this.inventory.remove(index);
+        //Log
+        EventLog.getInstance().logEvent(new Event("Item " + item.getName() + " used."));
     }
 
 
