@@ -32,7 +32,8 @@ public class GamePanel extends JPanel {
         repaint();
     }
 
-    // super implementation
+    // EFFECTS: paint  game components of this panel, 
+    //          according to grid and cell size
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
