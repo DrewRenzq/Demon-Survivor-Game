@@ -30,3 +30,7 @@ This is a popular game genre with many examples of successful game design. Adapt
 - Item Helmet used. Heal by 10
 - Item Potion collected - Effect: Increase attack by 9
 - Item Potion used. Increase attack by 9
+
+## Phase 4: Task 3
+- The SurvivorGame class handles both game state management and game logic. Extract the game logic into a new class, such as GameEngine, which would handle tasks like spawning enemies, managing player actions, and updating the game state. SurvivorGame would then act as a pure data model, representing the game state without logic.
+- The SurvivorGameGUI class manages both UI components and game state updates. Introducing another class ,which refacotoring handle user input and game updates, would keep the UI and model loosely coupled.
