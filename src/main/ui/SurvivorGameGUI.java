@@ -9,11 +9,12 @@ import persistence.JsonReader;
 import persistence.JsonWriter;
 
 import model.*;
+import model.Event;
 
 /*
  * Represent a GUI for survivor game, with game panel to visualize the game, and save/load function available
  */
-public class SurvivorGameGUI extends JFrame {
+public class SurvivorGameGUI extends JFrame implements WindowListener {
     private static final String JSON_STORE = "./data/SurvivorGame.json";
     private static final int INTERVAL = 10;
     private SurvivorGame survivorGame;
@@ -35,6 +36,8 @@ public class SurvivorGameGUI extends JFrame {
         gamePanel = new GamePanel(survivorGame);
         add(gamePanel, BorderLayout.CENTER);
         addSaveAndLoadButtons();
+
+        addWindowListener(this);
 
         pack();
         centreOnScreen();
@@ -101,6 +104,7 @@ public class SurvivorGameGUI extends JFrame {
             jsonWriter.write(survivorGame);
             jsonWriter.close();
             JOptionPane.showMessageDialog(this, "Game saved!");
+            printLog(EventLog.getInstance());
         } catch (FileNotFoundException e) {
             JOptionPane.showMessageDialog(this, "Error: Unable to save the game.");
         }
@@ -116,5 +120,50 @@ public class SurvivorGameGUI extends JFrame {
         } catch (IOException e) {
             JOptionPane.showMessageDialog(this, "Error: Unable to load the game.");
         }
+    }
+
+    // WindowListener method
+    @Override
+    public void windowOpened(WindowEvent e) {
+    }
+
+    // WindowListener method
+    // EFFECTS: while the window is closing, print the event log to console
+    @Override
+    public void windowClosing(WindowEvent e) {
+        printLog(EventLog.getInstance());
+    }
+
+    // EFFECTS: print the event log to console
+    public void printLog(EventLog el) {
+        for (Event next : el) {
+            System.out.println(next.getDescription());
+        }
+    }
+
+    // WindowListener method
+    @Override
+    public void windowClosed(WindowEvent e) {
+    }
+
+
+    // WindowListener method
+    @Override
+    public void windowIconified(WindowEvent e) {
+    }
+
+    // WindowListener method
+    @Override
+    public void windowDeiconified(WindowEvent e) {
+    }
+
+    // WindowListener method
+    @Override
+    public void windowActivated(WindowEvent e) {
+    }
+
+    // WindowListener method
+    @Override
+    public void windowDeactivated(WindowEvent e) {
     }
 }
