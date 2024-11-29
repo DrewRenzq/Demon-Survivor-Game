@@ -69,7 +69,8 @@ public class Player implements Writable {
     public void collect(Item item) {
         this.inventory.add(item);
         //Log
-        EventLog.getInstance().logEvent(new Event("Item " + item.getName() + " collected."));
+        EventLog.getInstance().logEvent(new Event("Item " + item.getName() + " collected - Effect: " 
+                                                + item.getEffect() + " by " + item.getValue()));
     }
 
     // MODIFIES: this, EventLog
@@ -88,7 +89,7 @@ public class Player implements Writable {
         }
         this.inventory.remove(index);
         //Log
-        EventLog.getInstance().logEvent(new Event("Item " + item.getName() + " used."));
+        EventLog.getInstance().logEvent(new Event("Item " + item.getName() + " used. " + item.getEffect() + " by " + item.getValue()));
     }
 
 
