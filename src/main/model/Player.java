@@ -89,7 +89,8 @@ public class Player implements Writable {
         }
         this.inventory.remove(index);
         //Log
-        EventLog.getInstance().logEvent(new Event("Item " + item.getName() + " used. " + item.getEffect() + " by " + item.getValue()));
+        EventLog.getInstance().logEvent(new Event("Item " + item.getName() + " used. " + item.getEffect() 
+                                                    + " by " + item.getValue()));
     }
 
 
