@@ -24,9 +24,9 @@ This is a popular game genre with many examples of successful game design. Adapt
 - You can reload the state of my application by click on the button titled "Load Game".
 
 ## Phase 4: Task 2
-Item Ring collected - Effect: Increase attack by 4
-Item Helmet collected - Effect: Heal by 10
-Item Ring used. Increase attack by 4
-Item Helmet used. Heal by 10
-Item Potion collected - Effect: Increase attack by 9
-Item Potion used. Increase attack by 9
+- Item Ring collected - Effect: Increase attack by 4
+- Item Helmet collected - Effect: Heal by 10
+- Item Ring used. Increase attack by 4
+- Item Helmet used. Heal by 10
+- Item Potion collected - Effect: Increase attack by 9
+- Item Potion used. Increase attack by 9
